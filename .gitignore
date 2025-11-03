@@ -1,0 +1,10 @@
+# Ignore virtual environments
+.venv/
+.env
+*.env
+.env.*
+
+
+data/
+.DS_Store
+Thumbs.db
