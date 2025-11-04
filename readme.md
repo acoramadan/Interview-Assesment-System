@@ -70,7 +70,9 @@ Arsitektur Model
 <img src="/assets/image.png" title="Model architecture">
 
 Hasil Uji dengan OpenLSR
+<div> </div>
 <img src="/assets/outputasr.png" title="Output ASR">
+<div> </div>
 
 Tujuan Singkat
 Transkripsi audio atau audio hasil ekstrak video dengan output: transkrip, speaker, timestamp, dan confidence. Bisa word-level.
