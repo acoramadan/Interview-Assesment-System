@@ -11,11 +11,11 @@ from dotenv import load_dotenv
 from jiwer import wer, cer, Compose, ToLowerCase, ToUpperCase, RemovePunctuation, RemoveMultipleSpaces, Strip
 from pyannote.audio import Pipeline
 from faster_whisper import WhisperModel
-from model.utils import get_device
-from model.asr_pipeline import ASRPipeline
-from model.voice_detection import VAD
-from model.diarization import Diarization
-from model.transcribe import Transcribe
+from model.asr.utils import get_device
+from model.asr.asr_pipeline import ASRPipeline
+from model.asr.voice_detection import VAD
+from model.asr.diarization import Diarization
+from model.asr.transcribe import Transcribe
 
 warnings.filterwarnings("ignore")
 
