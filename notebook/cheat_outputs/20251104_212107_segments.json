@@ -1,0 +1,51 @@
+{
+  "session_start_unix": 1762262477.2527745,
+  "session_start_readable": "2025-11-04 21:21:17",
+  "segments": [
+    {
+      "track_id": 1,
+      "reason": "HEAD_POSE_OFF",
+      "start_ts": 1762262487.5131838,
+      "end_ts": 1762262488.0399997,
+      "duration_sec": 0.5268158912658691,
+      "start_hhmmss": "00:00:10.260",
+      "end_hhmmss": "00:00:10.787"
+    },
+    {
+      "track_id": 1,
+      "reason": "HEAD_POSE_OFF",
+      "start_ts": 1762262491.145347,
+      "end_ts": 1762262491.2722883,
+      "duration_sec": 0.12694120407104492,
+      "start_hhmmss": "00:00:13.893",
+      "end_hhmmss": "00:00:14.020"
+    },
+    {
+      "track_id": 1,
+      "reason": "HEAD_POSE_OFF",
+      "start_ts": 1762262500.348341,
+      "end_ts": 1762262502.7485082,
+      "duration_sec": 2.400167226791382,
+      "start_hhmmss": "00:00:23.096",
+      "end_hhmmss": "00:00:25.496"
+    },
+    {
+      "track_id": 1,
+      "reason": "HEAD_POSE_OFF",
+      "start_ts": 1762262507.8636165,
+      "end_ts": 1762262512.1218896,
+      "duration_sec": 4.258273124694824,
+      "start_hhmmss": "00:00:30.611",
+      "end_hhmmss": "00:00:34.869"
+    },
+    {
+      "track_id": 1,
+      "reason": "HEAD_POSE_OFF",
+      "start_ts": 1762262515.9781237,
+      "end_ts": 1762262521.5508661,
+      "duration_sec": 5.572742462158203,
+      "start_hhmmss": "00:00:38.725",
+      "end_hhmmss": "00:00:44.298"
+    }
+  ]
+}
