@@ -6,7 +6,6 @@
   <img src="/assets/2.gif" alt="Demo 2" height="140">
   <img src="/assets/3.gif" alt="Demo 3" height="140">
   <img src="/assets/4.gif" alt="Demo 4" height="140">
-  <img src="/assets/5.gif" alt="Demo 5" height="140">
 </div>
 
 ---
@@ -74,60 +73,38 @@ Hasil Uji dengan OpenLSR
 <img src="/assets/outputasr.png" title="Output ASR">
 <div> </div>
 
-Tujuan Singkat
-Transkripsi audio atau audio hasil ekstrak video dengan output: transkrip, speaker, timestamp, dan confidence. Bisa word-level.
+Pipeline inference **speaker-aware** untuk audio (atau audio hasil ekstraksi video) dengan output:
+**transkrip + speaker + timestamp + confidence** (opsional: word-level).
+Didesain modular (OOP) sehingga bisa dipakai sebagai **library (web API)** atau **CLI**.
 
-Fitur Utama
-VAD (Silero): memilih bagian bersuara agar hemat komputasi.
+## Fitur Utama
+- **VAD (Silero)**: deteksi bagian ber-suara → hemat komputasi.
+- **Speaker Diarization (pyannote)**: segmentasi per-pembicara.
+- **ASR (Faster-Whisper)**: transkripsi tiap segmen (dukung `language`, `beam_size`, word timestamps).
+- **Confidence score** per segmen: dari `avg_logprob` & `no_speech_prob`.
+- **Word-level (opsional)**: kata, timestamp global, probability.
 
-Speaker Diarization (pyannote): segmentasi per pembicara.
 
-ASR (Faster-Whisper): transkripsi per segmen, mendukung language, beam_size, dan word timestamps.
+> - `VAD`, `Diarization`, `Transcriber`, dan `ASRPipeline`.
 
-Confidence per segmen dari avg_logprob dan no_speech_prob.
+---
 
-Word-level (opsional): kata, timestamp global, probability.
+## Prasyarat & Dependensi
 
-Komponen: VAD, Diarization, Transcriber, ASRPipeline.
+- Python 3.9–3.11
+- `torch` (GPU opsional, direkomendasikan)
+- `pyannote.audio` (model: `pyannote/speaker-diarization-community-1`)
+- `faster-whisper`
+- `soundfile`
+- (Opsional) `ffmpeg` untuk resampling / ekstrak audio dari video
 
-Instalasi Cepat (ASR)
-bash
-Salin kode
+### Instalasi Cepat
+
+```bash
 python -m venv .venv
-# Windows: .venv\Scripts\activate
-source .venv/bin/activate
-
+source .venv/bin/activate               # Windows: .venv\Scripts\activate
 pip install --upgrade pip
-pip install torch                   # pilih wheel CUDA sesuai driver jika ada GPU
+
+# inti
+pip install torch                       # atau wheel CUDA sesuai driver Anda
 pip install pyannote.audio faster-whisper soundfile fastapi uvicorn
-
-# opsional: ffmpeg untuk ekstraksi/resampling audio dari video
-Cara Pakai Tingkat Tinggi
-Ekstrak audio dari video (opsional, via ffmpeg).
-
-Jalankan VAD untuk mendeteksi bagian bersuara.
-
-Jalankan diarization untuk memisahkan pembicara.
-
-Transkripsi setiap segmen dengan Faster-Whisper.
-
-Gabungkan hasil: text, speaker, start, end, confidence (opsional: word-level).
-
-Integrasi Vision + ASR (Opsional)
-Jalankan keduanya secara paralel atau berurutan.
-
-Samakan referensi waktu. Gunakan segmen vision (EYES_OFF/EYES_MOVING) sebagai konteks ketika menganalisis reliabilitas transkrip atau menandai event kecurangan multimodal.
-
-Catatan Konfigurasi Singkat
-Atur sensitivitas mata: turunkan GAZE_SPEED_THR atau GAZE_DELTA_X/Y bila perlu.
-
-Kurangi salah deteksi karena gelengan: naikkan HEAD_STATIC_VEL_THR atau longgarkan FACING_YAW_DEG/PITCH_DEG.
-
-Stabilkan sinyal: kecilkan EMA_ALPHA untuk pergerakan yang lebih halus.
-
-Prasyarat Umum
-Python 3.9–3.11
-
-Kamera terpasang untuk vision
-
-GPU opsional untuk percepatan torch dan Faster-Whisper
