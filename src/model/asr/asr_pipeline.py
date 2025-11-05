@@ -1,6 +1,6 @@
-from model.voice_detection import VAD
-from model.diarization import Diarization
-from model.transcribe import Transcribe
+from .voice_detection import VAD
+from .diarization import Diarization
+from .transcribe import Transcribe
 from typing import Tuple, List, Dict
 import numpy as np
 
