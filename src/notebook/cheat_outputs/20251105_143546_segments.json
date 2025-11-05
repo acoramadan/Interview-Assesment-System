@@ -1,0 +1,24 @@
+{
+  "session_start_unix": 1762324743.5126674,
+  "session_start_readable": "2025-11-05 14:39:03",
+  "segments": [
+    {
+      "track_id": 1,
+      "reason": "HEAD_POSE_OFF",
+      "start_ts": 1762324758.5271516,
+      "end_ts": 1762324759.0545266,
+      "duration_sec": 0.5273749828338623,
+      "start_hhmmss": "00:00:15.014",
+      "end_hhmmss": "00:00:15.542"
+    },
+    {
+      "track_id": 1,
+      "reason": "HEAD_POSE_OFF",
+      "start_ts": 1762324769.2995412,
+      "end_ts": 1762324771.0241756,
+      "duration_sec": 1.7246344089508057,
+      "start_hhmmss": "00:00:25.787",
+      "end_hhmmss": "00:00:27.512"
+    }
+  ]
+}
