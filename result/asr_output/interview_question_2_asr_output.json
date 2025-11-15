@@ -1,0 +1,397 @@
+{
+    "full_scripts": "You can describe your experience with cancer learning and cancer flow. How do you benefit from your projects? Ah, okay. About Transylvania is actually... Uh, we use existing train model from. a tensorflow, for example, like Oh. Pg16, Pg9, D, and Y. especially Or... or some cases that we need to use. deep learning using Keras applications. Uh... For example, I- image classification, we can use slash programming. Uh... What else? which is That's all ready. uh... right module with. exceptionally. high accuracy. performance. Oh. Yeah, even though it's trying to be front datasets, but It really helps, it will improve. I want to learn. model performance, model accuracy, model... loss uh... Bye. You know, oh. For example, Mobile Land. VGG19, VGG16 efficient map It we'll have to improve our.  Comparing to the one if you use a traditional CNN Mobile. with the convolutional 2D yeah max pooling And yeah. markets. It's quite good actually. to use transfer running. Perhaps. with our... model performance to improve our model performance.",
+    "segments": [
+        {
+            "start": 1.02496875,
+            "end": 6.23934375,
+            "speaker": "SPEAKER_00",
+            "text": "You can describe your experience with cancer learning and cancer flow. How do you benefit from your projects?",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 6.84896875,
+            "end": 10.39271875,
+            "speaker": "SPEAKER_00",
+            "text": "Ah, okay. About Transylvania is actually...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 10.91296875,
+            "end": 13.91671875,
+            "speaker": "SPEAKER_00",
+            "text": "Uh, we use existing train model from.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 14.400968749999999,
+            "end": 16.25721875,
+            "speaker": "SPEAKER_00",
+            "text": "a tensorflow, for example, like",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 16.83296875,
+            "end": 17.71046875,
+            "speaker": "SPEAKER_00",
+            "text": "Oh.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 19.10496875,
+            "end": 21.78809375,
+            "speaker": "SPEAKER_00",
+            "text": "Pg16, Pg9, D, and Y.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 22.30496875,
+            "end": 23.89121875,
+            "speaker": "SPEAKER_00",
+            "text": "especially",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 24.80096875,
+            "end": 25.35784375,
+            "speaker": "SPEAKER_00",
+            "text": "Or...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 26.27296875,
+            "end": 29.19234375,
+            "speaker": "SPEAKER_00",
+            "text": "or some cases that we need to use.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 29.63296875,
+            "end": 32.24859375,
+            "speaker": "SPEAKER_00",
+            "text": "deep learning using Keras applications.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 33.05696875,
+            "end": 33.93446875,
+            "speaker": "SPEAKER_00",
+            "text": "Uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 35.10496875,
+            "end": 35.83059375,
+            "speaker": "SPEAKER_00",
+            "text": "For example, I-",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 36.38496875,
+            "end": 38.67996875,
+            "speaker": "SPEAKER_00",
+            "text": "image classification, we can use slash programming.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 39.29696875,
+            "end": 39.82009375,
+            "speaker": "SPEAKER_00",
+            "text": "Uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 40.16096875,
+            "end": 40.970968750000004,
+            "speaker": "SPEAKER_00",
+            "text": "What else?",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 41.40896875,
+            "end": 41.99959375,
+            "speaker": "SPEAKER_00",
+            "text": "which is",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 42.81696875,
+            "end": 43.74509375,
+            "speaker": "SPEAKER_00",
+            "text": "That's all ready.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 44.22496875,
+            "end": 44.74809375,
+            "speaker": "SPEAKER_00",
+            "text": "uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 45.18496875,
+            "end": 46.28184375,
+            "speaker": "SPEAKER_00",
+            "text": "right module with.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 47.26496875,
+            "end": 48.378718750000004,
+            "speaker": "SPEAKER_00",
+            "text": "exceptionally.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 48.86496875,
+            "end": 50.518718750000005,
+            "speaker": "SPEAKER_00",
+            "text": "high accuracy.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 50.97696875,
+            "end": 52.056968749999996,
+            "speaker": "SPEAKER_00",
+            "text": "performance.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 52.51296875,
+            "end": 53.27234375,
+            "speaker": "SPEAKER_00",
+            "text": "Oh.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 53.66496875,
+            "end": 56.14559375,
+            "speaker": "SPEAKER_00",
+            "text": "Yeah, even though it's trying to be front",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 56.89696875,
+            "end": 58.16259375,
+            "speaker": "SPEAKER_00",
+            "text": "datasets, but",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 58.62496875,
+            "end": 60.97059375,
+            "speaker": "SPEAKER_00",
+            "text": "It really helps, it will improve.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 61.47296875,
+            "end": 62.68796875,
+            "speaker": "SPEAKER_00",
+            "text": "I want to learn.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 63.87296875,
+            "end": 67.24796875,
+            "speaker": "SPEAKER_00",
+            "text": "model performance, model accuracy, model...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 67.61696875,
+            "end": 68.24134375,
+            "speaker": "SPEAKER_00",
+            "text": "loss",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 68.86496875,
+            "end": 69.47246875,
+            "speaker": "SPEAKER_00",
+            "text": "uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 71.52096875,
+            "end": 72.22971874999999,
+            "speaker": "SPEAKER_00",
+            "text": "Bye.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 72.86496875,
+            "end": 73.40496875000001,
+            "speaker": "SPEAKER_00",
+            "text": "You know, oh.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 73.79296875,
+            "end": 75.66609375,
+            "speaker": "SPEAKER_00",
+            "text": "For example, Mobile Land.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 75.93696875,
+            "end": 78.53571875,
+            "speaker": "SPEAKER_00",
+            "text": "VGG19, VGG16",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 79.58496875,
+            "end": 80.56371875,
+            "speaker": "SPEAKER_00",
+            "text": "efficient map",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 80.89696875,
+            "end": 81.69009375,
+            "speaker": "SPEAKER_00",
+            "text": "It",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 81.79296875,
+            "end": 83.66609375,
+            "speaker": "SPEAKER_00",
+            "text": "we'll have to improve our.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 84.06496875,
+            "end": 85.63434375,
+            "speaker": "SPEAKER_00",
+            "text": "",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 86.20896875,
+            "end": 88.38584374999999,
+            "speaker": "SPEAKER_00",
+            "text": "Comparing to the one if you use",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 88.83296875,
+            "end": 90.82421875,
+            "speaker": "SPEAKER_00",
+            "text": "a traditional CNN Mobile.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 91.93696875,
+            "end": 95.24446875000001,
+            "speaker": "SPEAKER_00",
+            "text": "with the convolutional",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 95.77696875,
+            "end": 98.03821875,
+            "speaker": "SPEAKER_00",
+            "text": "2D yeah max pooling",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 98.65696875,
+            "end": 99.73696875,
+            "speaker": "SPEAKER_00",
+            "text": "And yeah.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 100.70496875,
+            "end": 101.21121875,
+            "speaker": "SPEAKER_00",
+            "text": "markets.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 101.47296874999999,
+            "end": 103.68359375,
+            "speaker": "SPEAKER_00",
+            "text": "It's quite good actually.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 104.03296875,
+            "end": 105.95671875,
+            "speaker": "SPEAKER_00",
+            "text": "to use transfer running.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 107.16896875,
+            "end": 108.40084375,
+            "speaker": "SPEAKER_00",
+            "text": "Perhaps.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 108.80096875,
+            "end": 109.88096875,
+            "speaker": "SPEAKER_00",
+            "text": "with our...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 111.23296875,
+            "end": 114.11859375,
+            "speaker": "SPEAKER_00",
+            "text": "model performance to improve our model performance.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        }
+    ]
+}

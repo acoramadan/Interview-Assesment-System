@@ -1,0 +1,309 @@
+{
+    "full_scripts": "Share any specific challenges you face while working on certification and how you overcome them. Ah, okay, actually... Oh. for the challenges There are some challenges when Uh... I took the certifications of That's especially for the... The projects I mentioned that I will... uh already working with it Uh... The first one is actually... Uh...  to meet the specific accuracy or... uh... Collision loss, right for the epsilon matrix and Yeah, actually, that's just need to... cool to take some trial and error. with the with different architecture, for example, like... we can Aww. trying to add more. layer more neurons changes the neurons or even uh... I also apply the dropout layer Yeah. It really helps with your... the validation loss to... become more aware. And yeah, I think that's, that's one of the biggest challenges that that i have for a while working on these applications",
+    "segments": [
+        {
+            "start": 1.4089687499999999,
+            "end": 6.589593750000001,
+            "speaker": "SPEAKER_00",
+            "text": "Share any specific challenges you face while working on certification and how you overcome them.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 7.26496875,
+            "end": 8.88496875,
+            "speaker": "SPEAKER_00",
+            "text": "Ah, okay, actually...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 9.24896875,
+            "end": 10.10959375,
+            "speaker": "SPEAKER_00",
+            "text": "Oh.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 10.368968749999999,
+            "end": 11.718968749999998,
+            "speaker": "SPEAKER_00",
+            "text": "for the challenges",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 13.08896875,
+            "end": 14.50646875,
+            "speaker": "SPEAKER_00",
+            "text": "There are some challenges",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 14.84896875,
+            "end": 15.591468749999999,
+            "speaker": "SPEAKER_00",
+            "text": "when",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 16.03296875,
+            "end": 16.69109375,
+            "speaker": "SPEAKER_00",
+            "text": "Uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 16.99296875,
+            "end": 18.96734375,
+            "speaker": "SPEAKER_00",
+            "text": "I took the certifications of",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 19.488968749999998,
+            "end": 21.10896875,
+            "speaker": "SPEAKER_00",
+            "text": "That's especially for the...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 21.66496875,
+            "end": 24.31434375,
+            "speaker": "SPEAKER_00",
+            "text": "The projects I mentioned that I will...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 24.76896875,
+            "end": 25.32584375,
+            "speaker": "SPEAKER_00",
+            "text": "uh",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 26.43296875,
+            "end": 28.255468750000002,
+            "speaker": "SPEAKER_00",
+            "text": "already working with it",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 28.83296875,
+            "end": 29.38984375,
+            "speaker": "SPEAKER_00",
+            "text": "Uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 30.11296875,
+            "end": 31.69921875,
+            "speaker": "SPEAKER_00",
+            "text": "The first one is actually...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 33.12096875,
+            "end": 33.74534375,
+            "speaker": "SPEAKER_00",
+            "text": "Uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 34.24096875,
+            "end": 35.21971875,
+            "speaker": "SPEAKER_00",
+            "text": "",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 35.87296875,
+            "end": 39.382968749999996,
+            "speaker": "SPEAKER_00",
+            "text": "to meet the specific accuracy or...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 39.93696875,
+            "end": 40.52759375,
+            "speaker": "SPEAKER_00",
+            "text": "uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 41.47296875,
+            "end": 44.71296875,
+            "speaker": "SPEAKER_00",
+            "text": "Collision loss, right for the epsilon matrix",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 45.21696875,
+            "end": 45.77384375,
+            "speaker": "SPEAKER_00",
+            "text": "and",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 46.27296875,
+            "end": 48.58484375,
+            "speaker": "SPEAKER_00",
+            "text": "Yeah, actually, that's just need to...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 49.08896875,
+            "end": 49.67959375,
+            "speaker": "SPEAKER_00",
+            "text": "cool",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 50.30496875,
+            "end": 52.05996875,
+            "speaker": "SPEAKER_00",
+            "text": "to take some trial and error.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 52.48096875,
+            "end": 53.88159375,
+            "speaker": "SPEAKER_00",
+            "text": "with the",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 54.91296875,
+            "end": 57.51171875,
+            "speaker": "SPEAKER_00",
+            "text": "with different architecture, for example, like...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 57.98496875,
+            "end": 58.82871875,
+            "speaker": "SPEAKER_00",
+            "text": "we can",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 59.80896875,
+            "end": 60.53459375,
+            "speaker": "SPEAKER_00",
+            "text": "Aww.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 60.92896875,
+            "end": 62.00896875,
+            "speaker": "SPEAKER_00",
+            "text": "trying to add more.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 62.46496875,
+            "end": 66.31246875,
+            "speaker": "SPEAKER_00",
+            "text": "layer more neurons changes the neurons",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 66.78496875,
+            "end": 68.38809375000001,
+            "speaker": "SPEAKER_00",
+            "text": "or even uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 69.44096875,
+            "end": 72.15784375,
+            "speaker": "SPEAKER_00",
+            "text": "I also apply the dropout layer",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 72.73696875,
+            "end": 73.44571875,
+            "speaker": "SPEAKER_00",
+            "text": "Yeah.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 74.33696875,
+            "end": 75.65321875,
+            "speaker": "SPEAKER_00",
+            "text": "It really helps with your...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 76.38496875,
+            "end": 78.81496875,
+            "speaker": "SPEAKER_00",
+            "text": "the validation loss to...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 79.26496875,
+            "end": 80.85121875,
+            "speaker": "SPEAKER_00",
+            "text": "become more aware.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 82.30496875,
+            "end": 86.42246875000001,
+            "speaker": "SPEAKER_00",
+            "text": "And yeah, I think that's, that's one of the biggest challenges that",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 87.10496875,
+            "end": 88.74184375,
+            "speaker": "SPEAKER_00",
+            "text": "that i have for a while",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 89.92096875,
+            "end": 92.23284375,
+            "speaker": "SPEAKER_00",
+            "text": "working on these applications",
+            "confidence": 0.006737946999085467,
+            "words": []
+        }
+    ]
+}

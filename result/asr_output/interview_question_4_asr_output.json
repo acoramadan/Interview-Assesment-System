@@ -1,0 +1,413 @@
+{
+    "full_scripts": "explain how you do it and then drop out in  oh ok drop out and that's the flow module I'm doing this on training. Mm. Previously, I also implemented the Drawer layer. also in the project submission. within these certifications And... You can just add. the trombone layer. For example, If I'm not mistaken, it's... I have used this trouble layer and... The one that... The one that... case Peace um image classifications observant graphics something if I'm not wrong. I have used this proper layer. in in. in the middle of the layer. So there are there's a flat layer, right? of icon, the conferencing layer. another flapper layer And I use that drawer layer Uh, which is, uh, I use with the rate of 0.2 or 0.5 if that. if I'm not wrong. Aww. And then the Dense layer and the last layer Uh... the effect is. It will relapse to... Hmm improve our accuracy and lower our valuation loss. uh... Bye by turning off some of the previous layer.  Yeah, for example, like. we have. Dense Slayer 64 In the next layer, we implement the drop-off. layer with the red off. 0.5 and it will turn off randomly I hope of the previous Tense layer",
+    "segments": [
+        {
+            "start": 1.56896875,
+            "end": 6.378343750000001,
+            "speaker": "SPEAKER_00",
+            "text": "explain how you do it and then drop out in  oh ok drop out and that's the flow module I'm doing",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 6.81696875,
+            "end": 7.761968749999999,
+            "speaker": "SPEAKER_00",
+            "text": "this on training.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 8.576968749999999,
+            "end": 9.33634375,
+            "speaker": "SPEAKER_00",
+            "text": "Mm.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 11.61696875,
+            "end": 15.734468750000001,
+            "speaker": "SPEAKER_00",
+            "text": "Previously, I also implemented the Drawer layer.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 16.25696875,
+            "end": 18.29884375,
+            "speaker": "SPEAKER_00",
+            "text": "also in the project submission.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 18.65696875,
+            "end": 20.749468750000002,
+            "speaker": "SPEAKER_00",
+            "text": "within these certifications",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 21.15296875,
+            "end": 21.76046875,
+            "speaker": "SPEAKER_00",
+            "text": "And...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 22.91296875,
+            "end": 23.72296875,
+            "speaker": "SPEAKER_00",
+            "text": "You can just add.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 23.93696875,
+            "end": 25.01696875,
+            "speaker": "SPEAKER_00",
+            "text": "the trombone layer.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 25.53696875,
+            "end": 27.17384375,
+            "speaker": "SPEAKER_00",
+            "text": "For example,",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 27.96896875,
+            "end": 29.926468749999998,
+            "speaker": "SPEAKER_00",
+            "text": "If I'm not mistaken, it's...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 30.49696875,
+            "end": 33.14634375,
+            "speaker": "SPEAKER_00",
+            "text": "I have used this trouble layer and...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 34.20896875,
+            "end": 34.95146875,
+            "speaker": "SPEAKER_01",
+            "text": "The one that...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 34.20896875,
+            "end": 35.086468749999995,
+            "speaker": "SPEAKER_00",
+            "text": "The one that...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 35.93696875,
+            "end": 36.89884375,
+            "speaker": "SPEAKER_00",
+            "text": "case",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 37.18496875,
+            "end": 37.72496875,
+            "speaker": "SPEAKER_00",
+            "text": "Peace",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 38.81696875,
+            "end": 39.66071875,
+            "speaker": "SPEAKER_00",
+            "text": "um",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 42.46496875,
+            "end": 44.03434375,
+            "speaker": "SPEAKER_00",
+            "text": "image classifications",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 44.41696875,
+            "end": 45.66571875,
+            "speaker": "SPEAKER_00",
+            "text": "observant graphics",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 46.08096875,
+            "end": 47.44784375,
+            "speaker": "SPEAKER_00",
+            "text": "something if I'm not wrong.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 47.87296875,
+            "end": 49.47609375,
+            "speaker": "SPEAKER_00",
+            "text": "I have used this proper layer.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 49.88896875,
+            "end": 51.35709375,
+            "speaker": "SPEAKER_00",
+            "text": "in",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 52.32096875,
+            "end": 52.75971875,
+            "speaker": "SPEAKER_00",
+            "text": "in.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 53.18496875,
+            "end": 56.627468750000006,
+            "speaker": "SPEAKER_00",
+            "text": "in the middle of the layer.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 57.08896875,
+            "end": 60.39646875,
+            "speaker": "SPEAKER_00",
+            "text": "So there are there's a flat layer, right?",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 60.73696875,
+            "end": 62.610093750000004,
+            "speaker": "SPEAKER_00",
+            "text": "of icon, the conferencing layer.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 62.91296875,
+            "end": 64.22921875,
+            "speaker": "SPEAKER_00",
+            "text": "another flapper layer",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 64.86496875,
+            "end": 67.24434375,
+            "speaker": "SPEAKER_00",
+            "text": "And I use that drawer layer",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 67.93696875,
+            "end": 70.75509375,
+            "speaker": "SPEAKER_00",
+            "text": "Uh, which is, uh, I use",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 72.06496875,
+            "end": 73.19559375,
+            "speaker": "SPEAKER_00",
+            "text": "with the rate of",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 74.08096875,
+            "end": 76.56159375,
+            "speaker": "SPEAKER_00",
+            "text": "0.2 or 0.5 if that.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 76.83296875,
+            "end": 77.81171875000001,
+            "speaker": "SPEAKER_00",
+            "text": "if I'm not wrong.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 78.24096875,
+            "end": 78.91596874999999,
+            "speaker": "SPEAKER_00",
+            "text": "Aww.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 79.32896875,
+            "end": 82.87271875,
+            "speaker": "SPEAKER_00",
+            "text": "And then the Dense layer and the last layer",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 83.29696875,
+            "end": 83.73571875,
+            "speaker": "SPEAKER_00",
+            "text": "Uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 85.05696875,
+            "end": 86.05259375,
+            "speaker": "SPEAKER_00",
+            "text": "the effect is.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 86.30496875,
+            "end": 88.29621875000001,
+            "speaker": "SPEAKER_00",
+            "text": "It will relapse to...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 88.99296875,
+            "end": 89.60046875,
+            "speaker": "SPEAKER_00",
+            "text": "Hmm",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 90.62496875,
+            "end": 94.45559374999999,
+            "speaker": "SPEAKER_00",
+            "text": "improve our accuracy and lower our valuation loss.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 94.91296875,
+            "end": 95.58796875,
+            "speaker": "SPEAKER_00",
+            "text": "uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 96.32096875,
+            "end": 96.99596875,
+            "speaker": "SPEAKER_00",
+            "text": "Bye",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 97.82496875,
+            "end": 101.60496875,
+            "speaker": "SPEAKER_00",
+            "text": "by turning off some of the previous layer.  Yeah, for example, like.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 101.88896875,
+            "end": 102.46271875000001,
+            "speaker": "SPEAKER_00",
+            "text": "we have.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 102.97696875,
+            "end": 105.42384375,
+            "speaker": "SPEAKER_00",
+            "text": "Dense Slayer 64",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 105.82496875,
+            "end": 108.08621875,
+            "speaker": "SPEAKER_00",
+            "text": "In the next layer, we implement the drop-off.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 108.64096875,
+            "end": 109.48471875,
+            "speaker": "SPEAKER_00",
+            "text": "layer with",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 109.79296875,
+            "end": 110.48484375,
+            "speaker": "SPEAKER_00",
+            "text": "the red off.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 110.78496875,
+            "end": 112.47246875,
+            "speaker": "SPEAKER_00",
+            "text": "0.5 and it will",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 112.89696875,
+            "end": 114.48321875,
+            "speaker": "SPEAKER_00",
+            "text": "turn off randomly",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 114.88096875,
+            "end": 116.21409374999999,
+            "speaker": "SPEAKER_00",
+            "text": "I hope",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 117.15296875,
+            "end": 119.32984375,
+            "speaker": "SPEAKER_00",
+            "text": "of the previous Tense layer",
+            "confidence": 0.006737946999085467,
+            "words": []
+        }
+    ]
+}

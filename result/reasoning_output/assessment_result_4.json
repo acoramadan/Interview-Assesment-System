@@ -1,0 +1,5 @@
+{
+  "score": 2,
+  "reason": "The candidate describes using a Dropout layer, a single regularization technique, rather than a complete, complex model. They provide a basic, somewhat disjointed explanation of how Dropout works to improve accuracy but fail to detail the model's architecture, purpose, or other steps taken to ensure accuracy and efficiency. The response is general, lacks specificity about the project, and demonstrates only a basic understanding of model building.",
+  "matched_level": "General Response with Limited Details"
+}

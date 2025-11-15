@@ -1,13 +1,15 @@
 import os
 import json
 import yaml
+import time
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-
+from google.genai.errors import ServerError
 load_dotenv()
 
 CONFIG_PATH = "../conf.yaml"
+JSON_PATH = "../result/asr_output/interview_question_5_asr_output.json"  #
 
 
 def load_config(path: str = CONFIG_PATH) -> dict:
@@ -56,14 +58,23 @@ def assess_answer(qid: str, candidate_answer: str):
         tools=tools or None,
     )
 
-    resp = client.models.generate_content(
-        model=model_cfg["model_name"],
-        contents=contents,
-        config=gen_config,
-    )
+    for attempt in range(3):
+        try:
+            resp = client.models.generate_content(
+                model=model_cfg["model_name"],
+                contents=contents,
+                config=gen_config,
+            )
 
-
-    print("Raw resp.text:", repr(resp.text))
+            break
+        
+        except ServerError as e:
+            if e.status_code == 503 and attempt < 2:
+                wait_time = (2 ** attempt) * 2
+                print(f"ServerError 503 encountered. Retrying in {wait_time} seconds...")
+                time.sleep(wait_time)
+            else:
+                raise e
 
     if resp.text is None:
         texts = []
@@ -84,18 +95,17 @@ def assess_answer(qid: str, candidate_answer: str):
 
 
 if __name__ == "__main__":
-    candidate_answer_q1 = """
-    During my TensorFlow Developer certification, I struggled with overfitting on a small image dataset.
-    I overcame this by adding data augmentation, using dropout and L2 regularization, and monitoring validation loss with early stopping.
-    I also tuned the learning rate and batch size to stabilize training and improve generalization.
-    """
+    with open(JSON_PATH, "r", encoding="utf-8") as f:
+        asr_output = json.load(f)
 
-    result = assess_answer("q1", candidate_answer_q1)
+    candidate_answer_q1 = asr_output["full_scripts"]
+
+    result = assess_answer("q3", candidate_answer_q1)
 
     print("\nParsed result:")
     print("Score:", result["score"])
     print("Reason:", result["reason"])
     print("Matched level:", result["matched_level"])
 
-    with open("assessment_result.json", "w", encoding="utf-8") as f:
+    with open("../result/reasoning_output/assessment_result_5.json", "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)

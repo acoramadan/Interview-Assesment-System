@@ -26,8 +26,8 @@ HG_TOKEN = os.getenv("HG_TOKEN")
 WHISPER_MODEL_SIZE = 'medium.en'
 PYANNOTE_VERSION = 'pyannote/speaker-diarization-community-1'
 VAD_MODEL_NAME = 'silero_vad'
-AUDIO_NAME = 'tes.wav'
-RESULT_PATH = '../result/'
+AUDIO_NAME = 'interview_question_5.wav'
+RESULT_PATH = '../result/asr_output/'
 
 print("Loading VAD model...\n")
 vad_model, vad_utils = torch.hub.load(
@@ -58,10 +58,13 @@ hyp, segments = pipe.process(
     language='en',
     return_words=True,
 )
+full_scripts = " ".join([seg['text'] for seg in segments])
 
-for seg in segments:
-    print(f"[{seg['start']:.2f} - {seg['end']:.2f}] Speaker {seg['speaker']}: {seg['text']} (Confidence: {seg['confidence']:.2f})")
+output_data = {
+    "full_scripts": full_scripts,
+    "segments": segments
+}
 
 with open(os.path.join(RESULT_PATH, AUDIO_NAME.replace('.wav', '_asr_output.json')), 'w') as f:
-    json.dump(segments, f, indent=4)
+    json.dump(output_data, f, indent=4)
 print("\nASR pipeline completed. Results saved.\n")

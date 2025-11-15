@@ -1,0 +1,381 @@
+{
+    "full_scripts": "Describe the process of building your own console for image. Okay, I'm doing CNM run Alright? So, uh... the first time. Of course, we... Make sure There are split uh... the image holders played it for for uh... Thanks for watching and have a great day! class. And then we can use Keras pre-processing, I found out the second image that I set from directory to split. training and the foundation data set. Bye. Yeah, of course we can use another another set which is the text dataset But, yeah. Okay, the next one. we can. Uh, yeah, we can just, uh, maybe we. We need to. implement also the image augmentation data image of the authentication tool. uh... make our dataset more uh, verities, right? For example, we can rotate, we can zoom it, we can crop it. Uh, and... Yeah, the last thing, yeah, of course we can build our model with the conference channel 2D. Specify the filters, the kernel size, the architecture of course. the inputs input shape for the first layer and then we can apply the next pooling to D Ah. And the next layer we can... Just use Confer, 2D, Mixpooling and whatever it is And. After that, we apply the flake layer. Uh... and drop out layer if you want And the last thing, don't forget to use the ds layer. the output like the last",
+    "segments": [
+        {
+            "start": 0.76896875,
+            "end": 5.29146875,
+            "speaker": "SPEAKER_00",
+            "text": "Describe the process of building your own console for image.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 6.20896875,
+            "end": 10.05646875,
+            "speaker": "SPEAKER_00",
+            "text": "Okay, I'm doing CNM run",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 10.336968749999999,
+            "end": 10.809468749999999,
+            "speaker": "SPEAKER_00",
+            "text": "Alright?",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 11.13696875,
+            "end": 12.41946875,
+            "speaker": "SPEAKER_00",
+            "text": "So, uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 12.640968749999999,
+            "end": 15.77971875,
+            "speaker": "SPEAKER_00",
+            "text": "the first time. Of course, we...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 16.12896875,
+            "end": 17.15834375,
+            "speaker": "SPEAKER_00",
+            "text": "Make sure",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 17.60096875,
+            "end": 18.90034375,
+            "speaker": "SPEAKER_00",
+            "text": "There are split",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 19.90496875,
+            "end": 20.52934375,
+            "speaker": "SPEAKER_00",
+            "text": "uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 20.73696875,
+            "end": 22.71134375,
+            "speaker": "SPEAKER_00",
+            "text": "the image holders played it for",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 23.392968749999998,
+            "end": 24.89484375,
+            "speaker": "SPEAKER_00",
+            "text": "for uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 25.60096875,
+            "end": 26.15784375,
+            "speaker": "SPEAKER_00",
+            "text": "Thanks for watching and have a great day!",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 26.36896875,
+            "end": 27.19584375,
+            "speaker": "SPEAKER_00",
+            "text": "class.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 28.44896875,
+            "end": 30.54146875,
+            "speaker": "SPEAKER_00",
+            "text": "And then we can use",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 31.456968749999998,
+            "end": 38.02134375,
+            "speaker": "SPEAKER_00",
+            "text": "Keras pre-processing, I found out the second image that I set from directory to split.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 38.52896875,
+            "end": 40.334593749999996,
+            "speaker": "SPEAKER_00",
+            "text": "training and the foundation",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 40.76896875,
+            "end": 41.57896875,
+            "speaker": "SPEAKER_00",
+            "text": "data set.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 42.01696875,
+            "end": 42.42196875,
+            "speaker": "SPEAKER_00",
+            "text": "Bye.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 42.72096875,
+            "end": 45.083468749999994,
+            "speaker": "SPEAKER_00",
+            "text": "Yeah, of course we can use another",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 45.47296875,
+            "end": 48.257343750000004,
+            "speaker": "SPEAKER_00",
+            "text": "another set which is the text dataset",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 48.60896875,
+            "end": 49.520218750000005,
+            "speaker": "SPEAKER_00",
+            "text": "But, yeah.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 50.20896875,
+            "end": 52.16646875,
+            "speaker": "SPEAKER_00",
+            "text": "Okay, the next one.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 52.60896875,
+            "end": 53.38521875,
+            "speaker": "SPEAKER_00",
+            "text": "we can.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 53.60096875,
+            "end": 56.30096875,
+            "speaker": "SPEAKER_00",
+            "text": "Uh, yeah, we can just, uh, maybe we.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 56.54496875,
+            "end": 57.236843750000006,
+            "speaker": "SPEAKER_00",
+            "text": "We need to.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 57.60096875,
+            "end": 58.88346875,
+            "speaker": "SPEAKER_00",
+            "text": "implement also the",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 59.13696875,
+            "end": 60.74009375,
+            "speaker": "SPEAKER_00",
+            "text": "image augmentation",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 61.08896875,
+            "end": 64.31209375,
+            "speaker": "SPEAKER_00",
+            "text": "data image of the authentication tool.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 64.76896875,
+            "end": 65.51146875,
+            "speaker": "SPEAKER_00",
+            "text": "uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 67.20096875,
+            "end": 69.17534375,
+            "speaker": "SPEAKER_00",
+            "text": "make our dataset more",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 69.82496875,
+            "end": 71.12434375,
+            "speaker": "SPEAKER_00",
+            "text": "uh, verities, right?",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 71.36096875,
+            "end": 76.38971875,
+            "speaker": "SPEAKER_00",
+            "text": "For example, we can rotate, we can zoom it, we can crop it.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 76.89696875,
+            "end": 78.24696875,
+            "speaker": "SPEAKER_00",
+            "text": "Uh, and...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 78.81696875,
+            "end": 81.53384375,
+            "speaker": "SPEAKER_00",
+            "text": "Yeah, the last thing, yeah, of course we can build our",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 81.88896875,
+            "end": 84.40334375,
+            "speaker": "SPEAKER_00",
+            "text": "model with the conference channel 2D.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 84.86496875,
+            "end": 88.76309375000001,
+            "speaker": "SPEAKER_00",
+            "text": "Specify the filters, the kernel size, the architecture of course.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 89.24896875,
+            "end": 89.85646875,
+            "speaker": "SPEAKER_00",
+            "text": "the inputs",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 90.08096875,
+            "end": 92.24096875,
+            "speaker": "SPEAKER_00",
+            "text": "input shape for the first layer and then",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 92.51296875,
+            "end": 94.58859375,
+            "speaker": "SPEAKER_00",
+            "text": "we can apply the next pooling to D",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 95.13696875,
+            "end": 95.81196874999999,
+            "speaker": "SPEAKER_00",
+            "text": "Ah.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 96.51296875,
+            "end": 98.63921875,
+            "speaker": "SPEAKER_00",
+            "text": "And the next layer we can...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 98.94496875,
+            "end": 103.90621875000001,
+            "speaker": "SPEAKER_00",
+            "text": "Just use Confer, 2D, Mixpooling and whatever it is",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 105.69696875,
+            "end": 106.16946875,
+            "speaker": "SPEAKER_00",
+            "text": "And.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 106.49696875,
+            "end": 108.70759375,
+            "speaker": "SPEAKER_00",
+            "text": "After that, we apply the flake layer.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 109.18496875,
+            "end": 109.97809375,
+            "speaker": "SPEAKER_00",
+            "text": "Uh...",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 110.75296875,
+            "end": 112.67671874999999,
+            "speaker": "SPEAKER_00",
+            "text": "and drop out layer if you want",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 113.08896875,
+            "end": 116.56521875000001,
+            "speaker": "SPEAKER_00",
+            "text": "And the last thing, don't forget to use the ds layer.",
+            "confidence": 0.006737946999085467,
+            "words": []
+        },
+        {
+            "start": 117.53696875,
+            "end": 120.01759375,
+            "speaker": "SPEAKER_00",
+            "text": "the output like the last",
+            "confidence": 0.006737946999085467,
+            "words": []
+        }
+    ]
+}

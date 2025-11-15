@@ -1,0 +1,5 @@
+{
+  "score": 2,
+  "reason": "The candidate provides a general, textbook-like description of building a Convolutional Neural Network (CNN) rather than detailing a specific, complex model they have personally built. They mention standard components like Conv2D, MaxPooling, and data augmentation, which addresses accuracy at a basic level. However, the response lacks specificity regarding the model's architecture or purpose and completely omits any discussion of efficiency or performance tuning. The answer demonstrates a basic understanding but lacks the depth and project-specific details required for a higher score.",
+  "matched_level": "General Response with Limited Details"
+}

@@ -1,0 +1,5 @@
+{
+  "score": 2,
+  "reason": "The candidate demonstrates a basic understanding by naming pre-trained models like VGG16 and MobileNet and stating they improve performance over a custom CNN. However, the response is very general and lacks any specific details about personal projects where transfer learning was applied. The explanation of benefits is disjointed and unclear. The answer fails to provide the specific, personal experience required for a higher score, aligning it with the 'General Response with Limited Details' level.",
+  "matched_level": "General Response with Limited Details"
+}
