@@ -23,6 +23,7 @@ def hhmmss(sec):
 
 def estimate_head_pose_flexible(w, h, lm2d, lm3d_or_none):
     pts2d = np.array([[lm2d[i].x*w, lm2d[i].y*h] for i in LMK_IDX], dtype=np.float64)
+    
     if lm3d_or_none is not None:
         pts3d = np.array([[lm3d_or_none[i].x, lm3d_or_none[i].y, lm3d_or_none[i].z] for i in LMK_IDX], dtype=np.float64)
 

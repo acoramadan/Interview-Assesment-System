@@ -22,6 +22,7 @@ class SegmentLogger:
 
     def _append_closed(self, seg):
         self.closed_segments.append(seg)
+        
         if SEGMENTS_TO_CSV:
             with open(self.csv_path, "a", newline="", encoding="utf-8") as f:
                 w = csv.writer(f)

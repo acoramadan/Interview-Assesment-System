@@ -37,6 +37,7 @@ class Track:
             dp = (self.pitch_s - self.prev_pitch) if self.pitch_s is not None else 0.0
             vel = np.hypot(dy, dp) / dt
             self.head_vel = ema(self.head_vel, vel, alpha=HEAD_VEL_SMOOTH)
+
         self.prev_yaw, self.prev_pitch, self.prev_ang_t = self.yaw_s, self.pitch_s, t
 
     def update_bbox(self, bbox):
@@ -96,6 +97,7 @@ class Track:
 
         if off:
             if self.ts_eyes_off_start is None: self.ts_eyes_off_start = t
+
         else:
             self.ts_eyes_off_start = None
 
@@ -105,6 +107,7 @@ class Track:
 
         if moving:
             if self.ts_eyes_moving_start is None: self.ts_eyes_moving_start = t
+            
         else:
             self.ts_eyes_moving_start = None
 

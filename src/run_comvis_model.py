@@ -28,7 +28,9 @@ def main():
 
         while True:
             ok, frame = cap.read()
+
             if not ok: break
+
             h, w = frame.shape[:2]
             draw = frame.copy()
             tnow = now_ts()
@@ -40,6 +42,7 @@ def main():
 
                 bboxes = []
                 det = fd.process(rgb)
+
                 if det and det.detections:
                     for d in det.detections:
                         rel = d.location_data.relative_bounding_box
@@ -53,12 +56,14 @@ def main():
 
                 lmk2d_list = []
                 lmk3d_list = None
+
                 if mesh_res and mesh_res.multi_face_landmarks:
                     lmk2d_list = mesh_res.multi_face_landmarks
                     has_world = hasattr(mesh_res,"multi_face_world_landmarks") and (mesh_res.multi_face_world_landmarks is not None)
                     lmk3d_list = mesh_res.multi_face_world_landmarks if has_world else [None]*len(lmk2d_list)
 
                     centers = []
+
                     for lm2d in lmk2d_list:
                         nose = lm2d.landmark[1]
                         centers.append((nose.x*w, nose.y*h))
@@ -66,7 +71,9 @@ def main():
                     for t in tracks:
                         cx = (t.bbox[0]+t.bbox[2])/2.0
                         cy = (t.bbox[1]+t.bbox[3])/2.0
+
                         if not centers: continue
+
                         idx = int(np.argmin([(cx-x)**2 + (cy-y)**2 for (x,y) in centers]))
                         lm2d = lmk2d_list[idx].landmark
                         lm3d = None if (lmk3d_list is None or lmk3d_list[idx] is None) else lmk3d_list[idx].landmark
@@ -87,6 +94,7 @@ def main():
                                           (abs(t.yaw_s) <= MIN_FACING_FOR_GAZE and abs(t.pitch_s) <= MIN_FACING_FOR_GAZE)
 
                         g = gaze_adapt.refresh_on_bbox(frame, t.bbox)
+
                         if g is not None:
                             gx = None if g["gx"] is None else (g["gx"] - gaze_adapt.center_x)  
                             gy = None if g["gy"] is None else (g["gy"] - gaze_adapt.center_y) 
@@ -105,24 +113,35 @@ def main():
                             t.mark_flag("OUT_OF_FRAME",  (nowt - t.ts_last) >= CHEAT_MIN_OUTOFFRAME_SEC)
 
                 multi_faces_flag = (len(tracker.tracks) > 1) and (not gaze_adapt.active_calib)
+
                 if multi_faces_flag:
                     oldest_seen = min(t.ts_last for t in tracker.tracks) if tracker.tracks else now_ts()
                     multi_faces_flag = (tnow - oldest_seen) >= CHEAT_MIN_MULTIFACE_SEC
 
                 for t in tracker.tracks:
                     current_reason = None
+
                     if multi_faces_flag: current_reason = "MULTIPLE_FACES"
+
                     elif t.flags["OUT_OF_FRAME"]: current_reason = "OUT_OF_FRAME"
+
                     elif t.flags["EYES_OFF"]: current_reason = "EYES_OFF"
+
                     elif t.flags["EYES_MOVING"]: current_reason = "EYES_MOVING"
+
                     elif t.flags["HEAD_POSE_OFF"]: current_reason = "HEAD_POSE_OFF"
+
                     if gaze_adapt.active_calib: current_reason = None  
                     prev_reason = t.cheat_reason if t.cheat_active else None
+
                     if current_reason != prev_reason:
+
                         if current_reason is None and t.cheat_active:
                             t.clear_cheat()
+
                         elif current_reason is not None:
                             t.mark_cheat(current_reason)
+
                     seglog.update_track(t, current_reason)
 
             for t in tracker.tracks:

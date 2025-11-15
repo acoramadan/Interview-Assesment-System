@@ -1,0 +1,167 @@
+model:
+  provider: "google"
+  model_name: "gemini-2.5-pro"
+  temperature: 0.0          
+  thinking_budget: -1
+  max_output_tokens: 2048
+  use_google_search: false  
+  response_mime_type: "application/json"
+  
+rubric:
+  q1:
+    question: >
+      Can you share any specific challenges you faced while working on certification and how you overcame them?
+    scale:
+      "4": >
+        Comprehensive and Clear Response, 
+        Provides a detailed description of specific challenges encountered during the certification,
+        Offers clear explanations of how each challenge was overcome,
+        Demonstrates strong understanding of technical aspects and problem-solving skills,
+        Response is very clear, well-organized, and reflects on the learning process.
+      "3": >
+        Specific Challenge with Basic Solution,
+        Describes at least one specific challenge related to building machine learning models with TensorFlow,
+        Provides a basic explanation of how the challenge was overcome,
+        Explanation may be brief or lack depth,
+        Shows some understanding but lacks detailed insight.
+      "2": >
+        General Challenge Mentioned without Details.
+      "1": >
+        Minimal or Vague Response.
+      "0": >
+        Unanswered or Irrelevant Response.
+  q2:
+    question: >
+      Can you describe your experience with transfer learning in TensorFlow? How did it benefit your projects?
+    scale:
+      "4": >
+        Comprehensive and Very Clear Response,
+        Offers a detailed description of personal experience using transfer learning in TensorFlow,
+        Provides specific examples of projects and clearly explains the benefits gained,
+        Demonstrates strong understanding of transfer learning concepts and their practical application,
+        Response is very clear, well-organized, and reflects deep engagement with the subject.
+      "3": >
+        Specific Experience with Basic Explanation,
+        Describes personal experience with transfer learning in TensorFlow,
+        Provides examples of projects where transfer learning was applied,
+        Explains how transfer learning benefited those projects,
+        Explanation may be brief or lack comprehensive insight.
+      "2": >
+        General Response with Limited Details,
+        Mentions transfer learning or TensorFlow in general terms,
+        Provides minimal details about personal experience,
+        Does not clearly explain how transfer learning benefited projects,
+        Shows basic understanding but lacks depth and specificity.
+      "1": >
+        Minimal or Vague Response.
+      "0": >
+        Unanswered or Irrelevant Response.
+  q3:
+    question: >
+      Describe a complex TensorFlow model you have built and the steps you took to ensure its accuracy and efficiency.
+    scale:
+      "4": >
+        Comprehensive and Very Clear Response,
+        Offers a detailed description of a complex TensorFlow model built,
+        Provides specific details about the model's architecture, features, and purpose,
+        Clearly explains the steps taken to ensure both accuracy and efficiency, such as data preprocessing, model optimization techniques, regularization methods, and performance tuning,
+        Demonstrates strong understanding of TensorFlow and machine learning concepts,
+        Response is very clear, well-organized, and reflects deep engagement with the subject.
+      "3": >
+        Specific Model with Basic Explanation,
+        Describes a complex TensorFlow model they have built,
+        Provides some details about the model's architecture or purpose,
+        Explains steps taken to ensure accuracy and efficiency, but may lack depth,
+        Explanation may be brief or not fully comprehensive.
+      "2": >
+        General Response with Limited Details,
+        Mentions building a TensorFlow model in general terms,
+        Provides minimal details about the model's complexity,
+        Does not clearly explain the steps taken to ensure accuracy and efficiency,
+        Shows basic understanding but lacks depth and specificity.
+      "1": >
+        Minimal or Vague Response.
+      "0": >
+        Unanswered or Irrelevant Response.
+  q4:
+    question: >
+      Explain how to implement dropout in a TensorFlow model and the effect it has on training.
+    scale:
+      "4": >
+        Comprehensive and Very Clear Response,
+        Provides a detailed explanation of how to implement dropout in a TensorFlow model, including code examples or specific functions (e.g., using tf.keras.layers.Dropout),
+        Clearly explains the effect of dropout on training, such as how it helps prevent overfitting by randomly deactivating neurons during training,
+        Discusses the impact on model performance, generalization, and possibly mentions considerations like dropout rates,
+        Demonstrates strong understanding of TensorFlow and machine learning concepts,
+        Response is very clear, well-organized, and reflects deep engagement with the subject.
+      "3": >
+        Specific Explanation with Basic Understanding,
+        Explains how to implement dropout in a TensorFlow model with some specifics (e.g., mentions using Dropout layer),
+        Describes the general effect of dropout on training, such as preventing overfitting,
+        May omit some details about implementation or effects,
+        Demonstrates a reasonable understanding but lacks comprehensive insight.
+      "2": >
+        General Response with Limited Details.
+      "1": >
+        Minimal or Vague Response.
+      "0": >
+        Unanswered or Irrelevant Response.
+  q5:
+    question: >
+      Describe the process of building a convolutional neural network (CNN) using TensorFlow for image classification.
+    scale:
+      "4": >
+        Comprehensive and Very Clear Response,
+        Provides a detailed, step-by-step description of building a CNN in TensorFlow for image classification,
+        Covers all key components, including data loading and preprocessing, defining the CNN layers (convolutional, pooling, activation functions), compiling the model with appropriate loss function and optimizer, training the model, and evaluating performance,
+        May include code examples or specific TensorFlow functions used,
+        Demonstrates strong understanding of CNNs and TensorFlow,
+        Response is very clear, well-organized, and reflects deep engagement with the subject.
+      "3": >
+        Specific Explanation with Basic Understanding,
+        Describes the process of building a CNN in TensorFlow with some specifics,
+        Includes key steps such as data preprocessing, defining the CNN architecture, compiling the model, and training,
+        May lack comprehensive detail or omit some important aspects,
+        Demonstrates reasonable understanding but may not fully elaborate on each step.
+      "2": >
+        General Response with Limited Details.
+      "1": >
+        Minimal or Vague Response.
+      "0": >
+        Unanswered or Irrelevant Response.
+
+prompts:
+  assesor_single:
+    system: |
+      You are an expert evaluator for machine learning certification interviews. 
+      You will be provided with a candidate's response to a question about their experience with TensorFlow and machine learning. 
+      Your task is to assess the response based on a predefined rubric and assign a score from 0 to 4, where 4 is the highest score. 
+      Provide a brief justification for the score you assign.
+      You must follow the rubric exactly as provided.
+      You must output valid JSON only.
+
+    template: |
+      You will receive:
+      - One question from the rubric
+      - One response from the candidate
+
+      Task:
+      - Choose the best matching score (4, 3, 2, 1, 0) from the rubric for the given question and response.
+      - Provide a short justification in no more than 100 words for the score you assigned.
+      - Return JSON only with this structure:
+        {{
+          "score": <integer 0-4>,
+          "reason": "<short justification, max 100 words>",
+          "matched_level": "<rubric level that best matches>"
+        }}
+
+      Question: "{question}"
+      Rubric:
+      4: {lvl4}
+      3: {lvl3}
+      2: {lvl2}
+      1: {lvl1}
+      0: {lvl0}
+
+      Candidate answer:
+      "{answer}"

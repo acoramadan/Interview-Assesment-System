@@ -1,0 +1,150 @@
+{
+  "session_start_unix": 1762609011.4116569,
+  "session_start_readable": "2025-11-08 21:36:51",
+  "segments": [
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609015.7705798,
+      "end_ts": 1762609016.1727865,
+      "duration_sec": 0.4022066593170166,
+      "start_hhmmss": "00:00:04.359",
+      "end_hhmmss": "00:00:04.761"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609018.6190925,
+      "end_ts": 1762609018.8944142,
+      "duration_sec": 0.27532172203063965,
+      "start_hhmmss": "00:00:07.207",
+      "end_hhmmss": "00:00:07.483"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_OFF",
+      "start_ts": 1762609018.8944142,
+      "end_ts": 1762609019.3563101,
+      "duration_sec": 0.4618959426879883,
+      "start_hhmmss": "00:00:07.483",
+      "end_hhmmss": "00:00:07.945"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609020.1527581,
+      "end_ts": 1762609020.282692,
+      "duration_sec": 0.12993383407592773,
+      "start_hhmmss": "00:00:08.741",
+      "end_hhmmss": "00:00:08.871"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609021.0832531,
+      "end_ts": 1762609021.2283528,
+      "duration_sec": 0.14509963989257812,
+      "start_hhmmss": "00:00:09.672",
+      "end_hhmmss": "00:00:09.817"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_OFF",
+      "start_ts": 1762609021.2283528,
+      "end_ts": 1762609021.6107695,
+      "duration_sec": 0.3824167251586914,
+      "start_hhmmss": "00:00:09.817",
+      "end_hhmmss": "00:00:10.199"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609021.6107695,
+      "end_ts": 1762609022.8105786,
+      "duration_sec": 1.1998090744018555,
+      "start_hhmmss": "00:00:10.199",
+      "end_hhmmss": "00:00:11.399"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609027.739225,
+      "end_ts": 1762609027.871291,
+      "duration_sec": 0.132066011428833,
+      "start_hhmmss": "00:00:16.328",
+      "end_hhmmss": "00:00:16.460"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_OFF",
+      "start_ts": 1762609027.871291,
+      "end_ts": 1762609028.268873,
+      "duration_sec": 0.3975820541381836,
+      "start_hhmmss": "00:00:16.460",
+      "end_hhmmss": "00:00:16.857"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609028.268873,
+      "end_ts": 1762609029.2266827,
+      "duration_sec": 0.9578096866607666,
+      "start_hhmmss": "00:00:16.857",
+      "end_hhmmss": "00:00:17.815"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609031.5647843,
+      "end_ts": 1762609031.6901207,
+      "duration_sec": 0.1253364086151123,
+      "start_hhmmss": "00:00:20.153",
+      "end_hhmmss": "00:00:20.278"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609046.4605064,
+      "end_ts": 1762609047.2592545,
+      "duration_sec": 0.7987480163574219,
+      "start_hhmmss": "00:00:35.049",
+      "end_hhmmss": "00:00:35.848"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609048.1867323,
+      "end_ts": 1762609049.8234417,
+      "duration_sec": 1.636709451675415,
+      "start_hhmmss": "00:00:36.775",
+      "end_hhmmss": "00:00:38.412"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609051.3889558,
+      "end_ts": 1762609052.573981,
+      "duration_sec": 1.1850252151489258,
+      "start_hhmmss": "00:00:39.977",
+      "end_hhmmss": "00:00:41.162"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_OFF",
+      "start_ts": 1762609052.573981,
+      "end_ts": 1762609052.721761,
+      "duration_sec": 0.1477799415588379,
+      "start_hhmmss": "00:00:41.162",
+      "end_hhmmss": "00:00:41.310"
+    },
+    {
+      "track_id": 1,
+      "reason": "EYES_MOVING",
+      "start_ts": 1762609052.721761,
+      "end_ts": 1762609053.4501457,
+      "duration_sec": 0.7283847332000732,
+      "start_hhmmss": "00:00:41.310",
+      "end_hhmmss": "00:00:42.038"
+    }
+  ]
+}
