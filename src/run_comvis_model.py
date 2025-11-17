@@ -8,11 +8,11 @@ import cv2
 import mediapipe as mp
 
 
-def main():
+def main(video_path: str = None):
     session_start = now_ts()
     seglog = SegmentLogger(OUT_DIR, SESSION_PREFIX, session_start)
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0 if video_path is None else video_path)
     last_proc = 0.0
     tracker = Tracker()
 
@@ -177,4 +177,4 @@ def main():
     cap.release(); cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    main()
+    main("../data/video/tes.mp4")  # Set to None to use webcam
