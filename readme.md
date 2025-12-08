@@ -1,5 +1,5 @@
 # Cheating Detection (MediaPipe) + ASR Pipeline (VAD → Diarization → Faster-Whisper)
-# Link Hugging face model ASR INDO :[a link](https://huggingface.co/Mufliramadhan/indo_speech) 
+# Link Hugging face model ASR INDO :[hugging face](https://huggingface.co/Mufliramadhan/indo_speech) 
 ## Testing Output
 <div style="display:flex; gap:10px; justify-content:center; align-items:center; overflow-x:auto; padding:8px 0;">
   <img src="/assets/1.gif" alt="Demo 1" height="140">
