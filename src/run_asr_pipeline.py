@@ -1,5 +1,6 @@
 import torch
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 import soundfile as sf
 import warnings
 import numpy as np
@@ -21,7 +22,7 @@ warnings.filterwarnings("ignore")
 
 load_dotenv()
 SR = 16000
-AUDIO_PATH = '../data/audio/'
+AUDIO_PATH = 'data/'
 HG_TOKEN = os.getenv("HG_TOKEN")
 WHISPER_MODEL_SIZE = 'medium.en'
 PYANNOTE_VERSION = 'pyannote/speaker-diarization-community-1'

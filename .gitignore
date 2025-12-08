@@ -3,6 +3,7 @@
 .env
 *.env
 .env.*
+venv/
 
 result/
 
@@ -10,3 +11,6 @@ __pycache__/
 data/
 .DS_Store
 Thumbs.db
+
+requirements_asr.txt
+requirements_comvis.txt
