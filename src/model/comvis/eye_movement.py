@@ -2,61 +2,79 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-import pickle
 
+# Iris landmarks
 LEFT_IRIS = [474, 475, 476, 477]
 RIGHT_IRIS = [469, 470, 471, 472]
 
-class EyeGazeEstimator:
-    def __init__(self, model_path="src/comvis/eye-movement/unityeyes_eye_model.pkl", refine_landmarks=True):
-        # load small classifier (MLP / RF / etc)
-        with open(model_path, "rb") as f:
-            self.model = pickle.load(f)
+# Eye blink landmarks (EAR)
+LEFT_EYE = [33, 160, 158, 133, 153, 144]
+RIGHT_EYE = [263, 387, 385, 362, 380, 373]
 
-        # mediapipe face mesh
-        self.mp_face_mesh = mp.solutions.face_mesh
-        self.face_mesh = self.mp_face_mesh.FaceMesh(refine_landmarks=refine_landmarks)
-        # drawing utils kept out (UI will draw)
-    
-    def _get_iris_center(self, landmarks, idx_list, img_w, img_h):
-        pts = []
-        for idx in idx_list:
-            x = landmarks[idx].x * img_w
-            y = landmarks[idx].y * img_h
-            pts.append([x, y])
-        pts = np.array(pts)
+# Lower eyelid (untuk DOWN detection)
+LOWER_LID_L = [145, 153, 154]
+LOWER_LID_R = [374, 380, 386]
+
+
+class EyeGazeEstimator:
+    def __init__(self, refine_landmarks=True):
+        mp_mesh = mp.solutions.face_mesh
+        self.face_mesh = mp_mesh.FaceMesh(refine_landmarks=refine_landmarks)
+
+        # Threshold arah — DISARANKAN untuk webcam rata-rata
+        self.TH_LEFT = -0.12
+        self.TH_RIGHT = 0.12
+        self.TH_UP = -0.12
+        self.TH_DOWN = 0.12
+
+        # Blink threshold
+        self.BLINK_EAR = 0.20
+
+        # Threshold DOWN melalui eyelid distance (semakin kecil → iris mendekati kelopak bawah)
+        self.DOWN_EYELID_TH = 3.5
+
+
+    # =============================
+    # UTIL
+    # =============================
+    def _get_iris_center(self, lm, idxs, w, h):
+        pts = np.array([[lm[i].x * w, lm[i].y * h] for i in idxs])
         cx, cy = pts.mean(axis=0)
         return float(cx), float(cy)
 
-    def _normalize_feature(self, iris_x, iris_y, eye_left, eye_right):
-        # midpoint of eye corners
-        mid_x = (eye_left[0] + eye_right[0]) / 2.0
-        mid_y = (eye_left[1] + eye_right[1]) / 2.0
+    def _normalize_gaze(self, iris_x, iris_y, eye_left, eye_right):
+        mid_x = (eye_left[0] + eye_right[0]) / 2
+        mid_y = (eye_left[1] + eye_right[1]) / 2
 
-        # eye width (pixel)
-        eye_width = max(abs(eye_right[0] - eye_left[0]), 1.0)  # avoid div0
+        eye_w = max(abs(eye_right[0] - eye_left[0]), 1.0)
 
-        # normalize to roughly -1..+1 but tuned
-        gx = (iris_x - mid_x) / (eye_width / 2.0)
-        gx *= 2.0
-        gy = (iris_y - mid_y) / (eye_width / 2.0)
-        gy *= 4.0
+        gx = (iris_x - mid_x) / (eye_w / 2)
+        gy = (iris_y - mid_y) / (eye_w / 2)
 
-        return float(gx), float(gy)
+        # scaling untuk akurasi lebih baik
+        gx *= 1.8
+        gy *= 2.8
 
+        return gx, gy
+
+    def _EAR(self, lm, idxs, w, h):
+        pts = np.array([[lm[i].x * w, lm[i].y * h] for i in idxs])
+        A = np.linalg.norm(pts[1] - pts[5])
+        B = np.linalg.norm(pts[2] - pts[4])
+        C = np.linalg.norm(pts[0] - pts[3])
+        ear = (A + B) / (2.0 * C)
+        return ear
+
+    def _iris_to_lowerlid_dist(self, lm, iris_y, eyelid_idxs, w, h):
+        pts = np.array([[lm[i].x * w, lm[i].y * h] for i in eyelid_idxs])
+        lid_y = pts[:, 1].mean()
+        return lid_y - iris_y
+
+
+    # =============================
+    # MAIN PREDICT
+    # =============================
     def predict_from_frame(self, frame_bgr):
-        """
-        Input: BGR frame (numpy array)
-        Output: dict {
-            'gaze_label': str,
-            'gaze_probs': dict or None,
-            'gx': float,
-            'gy': float,
-            'left_iris': (x,y),
-            'right_iris': (x,y),
-            'status': 'OK' or 'NO_FACE'
-        }
-        """
         h, w = frame_bgr.shape[:2]
         rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
         res = self.face_mesh.process(rgb)
@@ -74,60 +92,78 @@ class EyeGazeEstimator:
         if not res.multi_face_landmarks:
             return out
 
-        # use first face detected
-        face_landmarks = res.multi_face_landmarks[0].landmark
+        lm = res.multi_face_landmarks[0].landmark
 
-        # iris centers
-        lx, ly = self._get_iris_center(face_landmarks, LEFT_IRIS, w, h)
-        rx, ry = self._get_iris_center(face_landmarks, RIGHT_IRIS, w, h)
+        # ===== IRIS CENTER =====
+        lx, ly = self._get_iris_center(lm, LEFT_IRIS, w, h)
+        rx, ry = self._get_iris_center(lm, RIGHT_IRIS, w, h)
 
-        # eye corner indices (left=33, right=263)
-        eye_left_corner = (face_landmarks[33].x * w, face_landmarks[33].y * h)
-        eye_right_corner = (face_landmarks[263].x * w, face_landmarks[263].y * h)
+        out["left_iris"] = (lx, ly)
+        out["right_iris"] = (rx, ry)
 
-        gx_left, gy_left = self._normalize_feature(lx, ly, eye_left_corner, eye_right_corner)
-        gx_right, gy_right = self._normalize_feature(rx, ry, eye_left_corner, eye_right_corner)
+        # ===== EYE CORNERS =====
+        eye_left_corner = (lm[33].x * w, lm[33].y * h)
+        eye_right_corner = (lm[263].x * w, lm[263].y * h)
 
-        gx = (gx_left + gx_right) / 2.0
-        gy = (gy_left + gy_right) / 2.0
+        # ===== GAZE NORMALIZATION =====
+        gx_left, gy_left = self._normalize_gaze(lx, ly, eye_left_corner, eye_right_corner)
+        gx_right, gy_right = self._normalize_gaze(rx, ry, eye_left_corner, eye_right_corner)
 
-        # predict with your model
-        try:
-            label = self.model.predict([[gx, gy]])[0]
-        except Exception as e:
-            # fallback: if model fails, return raw vector
-            out.update({
-                "gaze_label": None,
-                "gaze_probs": None,
-                "gx": gx,
-                "gy": gy,
-                "left_iris": (lx, ly),
-                "right_iris": (rx, ry),
-                "status": f"MODEL_ERROR: {e}"
-            })
+        gx = (gx_left + gx_right) / 2
+        gy = (gy_left + gy_right) / 2
+
+        out["gx"] = float(gx)
+        out["gy"] = float(gy)
+        out["status"] = "OK"
+
+        # ===== BLINK (EAR) =====
+        ear_L = self._EAR(lm, LEFT_EYE, w, h)
+        ear_R = self._EAR(lm, RIGHT_EYE, w, h)
+        ear_mean = (ear_L + ear_R) / 2
+
+        # ===== FIXED BLINK DETECTION (strong anti-false-down) =====
+        is_blink_ear = ear_mean < self.BLINK_EAR
+        is_vertical_move = abs(gy) > 0.08      # mata bergerak atas/bawah
+        is_horizontal_move = abs(gx) > 0.12    # mata bergerak kiri/kanan
+
+        # BLINK hanya kalau:
+        # - EAR turun
+        # - TIDAK sedang menggerakkan mata ke atas/bawah
+        # - TIDAK sedang menggerakkan mata kiri/kanan
+        if is_blink_ear and not is_vertical_move and not is_horizontal_move:
+            out["gaze_label"] = "BLINK"
             return out
 
-        # try to get probabilities if available
-        probs = None
-        try:
-            if hasattr(self.model, "predict_proba"):
-                p = self.model.predict_proba([[gx, gy]])[0]
-                classes = getattr(self.model, "classes_", None)
-                if classes is not None:
-                    probs = {str(classes[i]): float(p[i]) for i in range(len(p))}
-                else:
-                    probs = {str(i): float(p[i]) for i in range(len(p))}
-        except Exception:
-            probs = None
 
-        out.update({
-            "gaze_label": str(label),
-            "gaze_probs": probs,
-            "gx": float(gx),
-            "gy": float(gy),
-            "left_iris": (float(lx), float(ly)),
-            "right_iris": (float(rx), float(ry)),
-            "status": "OK"
-        })
 
+        # ===== EYELID DISTANCE FOR DOWN =====
+        lower_L = self._iris_to_lowerlid_dist(lm, ly, LOWER_LID_L, w, h)
+        lower_R = self._iris_to_lowerlid_dist(lm, ry, LOWER_LID_R, w, h)
+        lower_dist = (lower_L + lower_R) / 2
+
+        # ===== CLASSIFICATION =====
+        label = "CENTER"
+
+        if gx < self.TH_LEFT:
+            label = "LEFT"
+        elif gx > self.TH_RIGHT:
+            label = "RIGHT"
+        elif gy < self.TH_UP:
+            label = "UP"
+        elif gy > self.TH_DOWN:
+            label = "DOWN"
+
+        # priority override for DOWN using eyelid distance
+        # STABLE DOWN DETECTION (no false triggers)
+        is_vertical_down = gy > 0.10          # iris turun cukup jauh
+        is_eyelid_close  = lower_dist < 2.0    # eyelid benar-benar dekat
+        is_not_side      = abs(gx) < 0.25      # bukan lihat kiri/kanan
+        is_not_up        = gy > -0.05          # bukan lihat ke atas
+        is_not_blink     = ear_mean > self.BLINK_EAR
+
+        if is_vertical_down and is_eyelid_close and is_not_side and is_not_up and is_not_blink:
+            label = "DOWN"
+
+
+        out["gaze_label"] = label
         return out

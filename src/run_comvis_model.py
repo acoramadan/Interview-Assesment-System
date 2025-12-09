@@ -1,3 +1,4 @@
+# src/app_comvis_no_openvino.py
 import os
 import time
 import json
@@ -18,17 +19,14 @@ from model.comvis.people_detection import PeopleDetector
 # -----------------------
 # CONFIG
 # -----------------------
-VIDEO_PATH = "../data/interview_question_2.webm"
+VIDEO_PATH = "data/tes.mp4"
 
 EYE_MODEL_PATH = hf_hub_download(
     repo_id="NazeeraAlthea/comvis-model",
     filename="unityeyes_eye_model.pkl"
 )
 
-YOLO_MODEL_PATH = hf_hub_download(
-    repo_id="NazeeraAlthea/comvis-model",
-    filename="yolov8n.pt"
-)
+YOLO_MODEL_PATH = "yolov8n-pose.pt"
 
 # thresholds
 EYE_CHEAT_MIN_DURATION = 1.0
@@ -38,7 +36,7 @@ PEOPLE_MIN_DURATION = 0.3
 HEAD_YAW_THRESHOLD = 25.0
 HEAD_PITCH_THRESHOLD = 20.0
 
-RESULT_DIR = "../result/comvis_output"
+RESULT_DIR = "result/comvis_output"
 os.makedirs(RESULT_DIR, exist_ok=True)
 
 
@@ -124,7 +122,7 @@ def run_full_pipeline(video_path: str):
         raise FileNotFoundError(f"Video not found: {video_path}")
 
     print("Loading models...")
-    eye_model = EyeGazeEstimator(model_path=EYE_MODEL_PATH)
+    eye_model = EyeGazeEstimator()
     head_model = HeadPoseEstimator()
     people_model = PeopleDetector(model_path=YOLO_MODEL_PATH)
 

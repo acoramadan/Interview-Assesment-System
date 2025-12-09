@@ -14,3 +14,5 @@ Thumbs.db
 
 requirements_asr.txt
 requirements_comvis.txt
+
+*.pt
