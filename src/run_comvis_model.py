@@ -18,7 +18,7 @@ from model.comvis.people_detection import PeopleDetector
 # -----------------------
 # CONFIG
 # -----------------------
-VIDEO_PATH = "data/interview_question_2.webm"
+VIDEO_PATH = "../data/interview_question_2.webm"
 
 EYE_MODEL_PATH = hf_hub_download(
     repo_id="NazeeraAlthea/comvis-model",
@@ -38,7 +38,7 @@ PEOPLE_MIN_DURATION = 0.3
 HEAD_YAW_THRESHOLD = 25.0
 HEAD_PITCH_THRESHOLD = 20.0
 
-RESULT_DIR = "result/comvis_output"
+RESULT_DIR = "../result/comvis_output"
 os.makedirs(RESULT_DIR, exist_ok=True)
 
 
