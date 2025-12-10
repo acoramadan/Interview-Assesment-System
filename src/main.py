@@ -22,6 +22,18 @@ from pyannote.audio import Pipeline
 from google import genai
 from google.genai import types
 from google.genai.errors import ServerError
+
+from model.asr.asr_pipeline import ASRPipeline
+from model.asr.voice_detection import VAD
+from model.asr.diarization import Diarization
+from model.asr.transcribe import Transcribe
+
+from model.comvis.config import *
+from model.comvis.utils import now_ts, estimate_head_pose_flexible
+from model.comvis.tracker import Tracker
+from model.comvis.head_calib import HeadCalib
+from model.comvis.gaze_adapter import GazeAdapter
+from model.comvis.segment_log import SegmentLogger
 from run_comvis_model import run_full_pipeline, postprocess_and_export
 
 warnings.filterwarnings("ignore")
@@ -48,9 +60,8 @@ CONFIG_PATH = "../conf.yaml"
 SR = 16000
 HG_TOKEN = os.getenv("HG_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-WHISPER_MODEL_SIZE = 'medium.en'
-PYANNOTE_VERSION = 'pyannote/speaker-diarization-community-1'
-VAD_MODEL_NAME = 'silero_vad'
+WHISPER_MODEL_SIZE = 'large-v3'
+PYANNOTE_VERSION = 'pyannote/speaker-diarization-3.1'
 
 for folder in [UPLOAD_FOLDER, AUDIO_FOLDER, ASR_RESULT_FOLDER, CHEAT_RESULT_FOLDER, REASONING_RESULT_FOLDER]:
     Path(folder).mkdir(parents=True, exist_ok=True)
@@ -71,14 +82,6 @@ def load_models():
         return
 
     try:
-        print("Loading VAD model...")
-        vad_model, vad_utils = torch.hub.load(
-            repo_or_dir="snakers4/silero-vad",
-            model=VAD_MODEL_NAME,
-            force_reload=False,
-            trust_repo=True,
-        )
-
         print("Loading Diarization model...")
         pyannote = Pipeline.from_pretrained(PYANNOTE_VERSION, token=HG_TOKEN)
 
@@ -252,27 +255,19 @@ def extract_audio(video_path: str, audio_path: str) -> bool:
         print(f"Error extracting audio: {str(e)}")
         return False
 
-def process_asr(audio_path: str) -> dict:
+def process_asr(audio_path: str, language: str) -> dict:
     """Process audio with ASR pipeline"""
     try:
-        from model.asr.asr_pipeline import ASRPipeline
-        from model.asr.voice_detection import VAD
-        from model.asr.diarization import Diarization
-        from model.asr.transcribe import Transcribe
-
         audio, sr_read = sf.read(audio_path, dtype='float32')
         assert sr_read == SR, f"Sample rate mismatch: expected {SR}, got {sr_read}"
 
-        get_speech_timestamps = vad_utils[0]
-        vad = VAD(vad_model=vad_model, sampling_rate=SR)
         diar = Diarization(pyannote_model=pyannote, sampling_rate=SR)
         transcribe = Transcribe(model=whisper, sampling_rate=SR)
-        pipe = ASRPipeline(vad=vad, diar=diar, transcribe=transcribe)
+        pipe = ASRPipeline(diar=diar, transcribe=transcribe)
 
         hyp, segments = pipe.process(
             audio=audio,
-            get_speech_timestamps=get_speech_timestamps,
-            language='en',
+            language=language,
             return_words=True,
         )
 
@@ -280,6 +275,7 @@ def process_asr(audio_path: str) -> dict:
         speakers = set([seg['speaker'] for seg in segments])
         total_speakers = len(speakers)
         total_duration = sum([seg['end'] - seg['start'] for seg in segments])
+        
 
         return {
             "success": True,
@@ -379,7 +375,7 @@ async def root():
     }
 
 @app.post("/upload")
-async def upload_video(file: UploadFile = File(...)):
+async def upload_video(file: UploadFile = File(...), language: str = Form("en")):
     """Upload video, extract audio, process ASR and cheating detection"""
     try:
         if not file.filename:
@@ -416,7 +412,8 @@ async def upload_video(file: UploadFile = File(...)):
         if not models_loaded:
             raise HTTPException(status_code=500, detail="ASR models not loaded")
 
-        asr_result = process_asr(audio_path)
+        asr_result = process_asr(audio_path, language=language)
+        
         if not asr_result["success"]:
             raise HTTPException(status_code=500, detail=f"ASR failed: {asr_result.get('error')}")
 
