@@ -24,16 +24,9 @@ from google.genai import types
 from google.genai.errors import ServerError
 
 from model.asr.asr_pipeline import ASRPipeline
-from model.asr.voice_detection import VAD
 from model.asr.diarization import Diarization
 from model.asr.transcribe import Transcribe
 
-from model.comvis.config import *
-from model.comvis.utils import now_ts, estimate_head_pose_flexible
-from model.comvis.tracker import Tracker
-from model.comvis.head_calib import HeadCalib
-from model.comvis.gaze_adapter import GazeAdapter
-from model.comvis.segment_log import SegmentLogger
 from run_comvis_model import run_full_pipeline, postprocess_and_export
 
 warnings.filterwarnings("ignore")
