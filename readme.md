@@ -19,15 +19,15 @@ Deteksi indikasi tidak fokus atau kecurangan dari kamera dengan menekankan perge
 1. Ambil frame dari kamera pada target FPS.
 2. Deteksi wajah (MediaPipe FaceDetection) untuk bounding box.
 3. Estimasi landmark halus + iris (MediaPipe FaceMesh).
-4. Hitung:
+4. Estimasi baseline pose kepala (otomatis) untuk bias pengguna
+5. Hitung:
    - Pose kepala (yaw, pitch, roll) via solvePnP.
    - Keterbukaan mata dan posisi iris → gaze (gx, gy).
    - Kecepatan kepala dan kecepatan gaze.
-5. Kalibrasi 2 detik untuk bias pose dan pusat gaze per pengguna.
-6. Tentukan status dan alasan:
+7. Tentukan status dan alasan:
    - Fokus atau tidak (dengan hysteresis).
    - Alasan prioritas: MULTIPLE_FACES → OUT_OF_FRAME → EYES_OFF → EYES_MOVING → HEAD_POSE_OFF.
-7. Tulis segmen ke CSV/JSON saat alasan berubah.
+8. Tulis segmen ke CSV/JSON saat alasan berubah.
 
 ### Komponen Utama
 - `Track`: status per wajah (pose tersmooth, head velocity, gaze, timers, flags).
