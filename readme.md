@@ -30,18 +30,21 @@ Deteksi indikasi tidak fokus atau kecurangan dari kamera dengan menekankan perge
 8. Tulis segmen ke CSV/JSON saat alasan berubah.
 
 ### Komponen Utama
-- `Track`: status per wajah (pose tersmooth, head velocity, gaze, timers, flags).
-- `Tracker`: asosiasi bbox antar frame (IOU) dan pembersihan track hilang.
-- `Calib`: bias yaw/pitch dan pusat gaze dari median sampel awal.
+- `PeopleDetector`: mendeteksi jumlah orang per frame menggunakan YOLOv8 Pose, dilengkapi filter confidence, luas bbox, validasi skeleton, dan smoothing temporal.
+- `EyeGazeEstimator`: estimasi arah pandangan mata berbasis MediaPipe FaceMesh + iris landmarks, menghasilkan vektor gaze (gx, gy) dan label CENTER/LEFT/RIGHT/UP/DOWN/BLINK.
+- `HeadPoseEstimator`: estimasi pose kepala (yaw, pitch, roll) menggunakan solvePnP, dengan smoothing dan koreksi baseline otomatis.
+- `HybridCalibration`: estimasi baseline yaw dan pitch dari frame awal secara otomatis (tanpa interaksi pengguna) untuk koreksi bias posisi kamera.
 - `SegmentLogger`: log segmen ke `cheat_outputs/<prefix>_segments.csv` dan `.json`.
 
 ### Parameter Kunci (disetel agar pro-eye, toleran kepala)
-- `FACING_YAW_DEG=30`, `FACING_PITCH_DEG=20`
-- `MIN_FACING_FOR_GAZE=16`
-- `HYSTERESIS_FRAMES=8`
-- `CHEAT_MIN_EYESMOV_SEC=0.6`, `CHEAT_MIN_EYESOFF_SEC=0.8`
-- `GAZE_SPEED_THR=0.25`, `GAZE_SPEED_STATIC_HEAD_THR=25`
-- `HEAD_STATIC_VEL_THR=35 deg/s`
+- `FACING_YAW_THRESHOLD=25`, `HEAD_PITCH_THRESHOLD=20`
+- `EYE_CHEAT_MIN_DURATION = 1.0s`, `HEAD_CHEAT_MIN_DURATION = 1.0s`
+- `PEOPLE_MIN_DURATION = 0.3s`
+- `BLINK_EAR = 0.20`
+- `GAZE_LEFT/RIGHT/UP/DOWN_TH ≈ ±0.12`
+- `Head smoothing ALPHA = 0.7`
+- `Person count smoothing strength = 0.6`
+- `CALIBRATION_LIMIT = 40 frames (~1 detik)`
 
 ### Output
 - Overlay kamera: bbox, status, yaw/pitch, head_vel, gaze, kecepatan gaze, dan CHEATING:REASON saat aktif.
