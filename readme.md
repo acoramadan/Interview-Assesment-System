@@ -1,107 +1,123 @@
+# Cheating Detection (MediaPipe) + ASR Pipeline (VAD → Diarization → Faster-Whisper)
 
-# Interview Assessment System  
-**Cheating Detection (Computer Vision) + ASR Pipeline (VAD → Diarization → Faster-Whisper)**
-
-Sistem ini merupakan **working prototype (MVP)** untuk membantu proses evaluasi interview video dengan mengombinasikan **analisis verbal (speech-to-text)** dan **indikator non-verbal (computer vision)**.
-
----
-
-## Demo Output
+## Testing Output
 <div style="display:flex; gap:10px; justify-content:center; align-items:center; overflow-x:auto; padding:8px 0;">
   <img src="/assets/1.gif" alt="Demo 1" height="140">
   <img src="/assets/2.gif" alt="Demo 2" height="140">
   <img src="/assets/3.gif" alt="Demo 3" height="140">
   <img src="/assets/5.gif" alt="Demo 4" height="140">
 </div>
+
 ---
 
-## 1. Cheating Detection – Computer Vision (MediaPipe)
+## 1. Cheating Detection with MediaPipe (Head-tolerant, Eye-priority)
 
-### Tujuan
-Mendeteksi **indikasi ketidakfokusan atau potensi kecurangan** dari kamera dengan:
-- Prioritas pada **pergerakan mata (eye-gaze)**
-- Toleransi terhadap **gerakan kepala yang ekspresif**
-
-Modul ini **tidak mengambil keputusan otomatis**, melainkan menghasilkan **indikator pendukung** untuk proses evaluasi.
+### Tujuan Singkat
+Deteksi indikasi tidak fokus atau kecurangan dari kamera dengan menekankan pergerakan bola mata (eye-gaze) dan memberi toleransi pada gerakan kepala yang ekspresif.
 
 ### Cara Kerja Singkat
-1. Mengambil frame dari video/kamera pada FPS tertentu.  
-2. Mendeteksi wajah menggunakan *MediaPipe FaceDetection*.  
-3. Mengestimasi landmark wajah dan iris menggunakan *MediaPipe FaceMesh*.  
-4. Mengestimasi baseline pose kepala secara otomatis (tanpa interaksi pengguna).  
-5. Menghitung pose kepala, arah pandangan mata, serta kecepatan gerak.  
-6. Menentukan status fokus dengan *rule-based logic* dan hysteresis.  
-7. Mencatat segmen ke CSV/JSON ketika status berubah.
+1. Ambil frame dari kamera pada target FPS.
+2. Deteksi wajah (MediaPipe FaceDetection) untuk bounding box.
+3. Estimasi landmark halus + iris (MediaPipe FaceMesh).
+4. Estimasi baseline pose kepala (otomatis) untuk bias pengguna
+5. Hitung:
+   - Pose kepala (yaw, pitch, roll) via solvePnP.
+   - Keterbukaan mata dan posisi iris → gaze (gx, gy).
+   - Kecepatan kepala dan kecepatan gaze.
+7. Tentukan status dan alasan:
+   - Fokus atau tidak (dengan hysteresis).
+   - Alasan prioritas: MULTIPLE_FACES → OUT_OF_FRAME → EYES_OFF → EYES_MOVING → HEAD_POSE_OFF.
+8. Tulis segmen ke CSV/JSON saat alasan berubah.
 
 ### Komponen Utama
-- `PeopleDetector`: deteksi jumlah orang per frame menggunakan **YOLOv8 Pose**.  
-- `EyeGazeEstimator`: estimasi arah pandangan mata berbasis **MediaPipe FaceMesh + iris landmarks**.  
-- `HeadPoseEstimator`: estimasi pose kepala (yaw, pitch, roll) menggunakan **solvePnP**.  
-- `HybridCalibration`: estimasi baseline yaw dan pitch dari frame awal secara otomatis.  
-- `SegmentLogger`: pencatatan segmen event ke file CSV dan JSON.
+- PeopleDetector: mendeteksi jumlah orang per frame menggunakan YOLOv8 Pose, dilengkapi filter confidence, luas bbox, validasi skeleton, dan smoothing temporal.
+- EyeGazeEstimator: estimasi arah pandangan mata berbasis MediaPipe FaceMesh + iris landmarks, menghasilkan vektor gaze (gx, gy) dan label CENTER/LEFT/RIGHT/UP/DOWN/BLINK.
+- HeadPoseEstimator: estimasi pose kepala (yaw, pitch, roll) menggunakan solvePnP, dengan smoothing dan koreksi baseline otomatis.
+- HybridCalibration: estimasi baseline yaw dan pitch dari frame awal secara otomatis (tanpa interaksi pengguna) untuk koreksi bias posisi kamera.
+- SegmentLogger: log segmen ke cheat_outputs/<prefix>_segments.csv dan .json.
 
-### Parameter Kunci
-- `HEAD_YAW_THRESHOLD = 25°`, `HEAD_PITCH_THRESHOLD = 20°`  
-- `EYE_CHEAT_MIN_DURATION = 1.0s`  
-- `HEAD_CHEAT_MIN_DURATION = 1.0s`  
-- `PEOPLE_MIN_DURATION = 0.3s`  
-- `BLINK_EAR = 0.20`  
-- `GAZE_LEFT / RIGHT / UP / DOWN_TH ≈ ±0.12`  
-- `CALIBRATION_LIMIT = 40 frames (~1 detik)`
+### Parameter Kunci (disetel agar pro-eye, toleran kepala)
+- FACING_YAW_THRESHOLD=25, HEAD_PITCH_THRESHOLD=20
+- EYE_CHEAT_MIN_DURATION = 1.0s, HEAD_CHEAT_MIN_DURATION = 1.0s
+- PEOPLE_MIN_DURATION = 0.3s
+- BLINK_EAR = 0.20
+- GAZE_LEFT/RIGHT/UP/DOWN_TH ≈ ±0.12
+- Head smoothing ALPHA = 0.7
+- Person count smoothing strength = 0.6
+- CALIBRATION_LIMIT = 40 frames (~1 detik)
 
 ### Output
-- Overlay kamera: bounding box, status, yaw/pitch, gaze, dan alasan event.  
-- CSV: segmen event per durasi.  
+- Overlay kamera: bbox, status, yaw/pitch, head_vel, gaze, kecepatan gaze, dan CHEATING:REASON saat aktif.
+- CSV kolom: track_id, reason, start_ts, end_ts, duration_sec, start_hhmmss, end_hhmmss
 - JSON: metadata sesi dan daftar segmen.
 
----
-
-## 2. ASR Pipeline – VAD → Diarization → Faster-Whisper
-
-### Tujuan
-Menyediakan **transkripsi interview berbasis audio** yang *speaker-aware*, memiliki timestamp, dan siap diintegrasikan ke sistem evaluasi.
-
-### Alur Pipeline
-1. (Opsional) Ekstraksi audio dari video menggunakan FFmpeg.  
-2. **Voice Activity Detection (VAD)** untuk mendeteksi segmen bersuara.  
-3. **Diarization** untuk memisahkan pembicara.  
-4. Transkripsi tiap segmen menggunakan **Faster-Whisper**.  
-5. Penggabungan hasil: teks, speaker, waktu mulai/akhir, confidence (opsional).
-
-### Output ASR
-- Transkrip teks  
-- Label speaker  
-- Timestamp per segmen  
-- Confidence (opsional)
-
----
-
-## Integrasi Vision + ASR (Opsional)
-- Vision dan ASR dapat dijalankan secara paralel atau berurutan.  
-- Segmen Vision digunakan sebagai konteks tambahan dalam analisis interview.
-
----
-
-## Instalasi Singkat
-```bash
+### Instalasi Cepat (Vision)
+bash
 python -m venv .venv
-.venv\Scripts\activate   # Windows
-source .venv/bin/activate # Linux / macOS
+# Windows: .venv\Scripts\activate
+source .venv/bin/activate
 
 pip install --upgrade pip
-pip install opencv-python numpy mediapipe torch pyannote.audio faster-whisper soundfile
-```
+pip install opencv-python numpy mediapipe
+Menjalankan (Vision)
+bash
+Salin kode
+python main.py
+Tekan Esc untuk keluar. Hasil segmen tersimpan di cheat_outputs/.
 
----
 
-## Catatan
-- Sistem ini **tidak menggantikan assessor**.  
-- Output bersifat **indikator pendukung**, bukan keputusan final.  
-- Dirancang sebagai **MVP modular**.
+#### 2. ASR Pipeline – VAD → Diarization → Faster-Whisper
 
----
+Arsitektur Model
+<img src="/assets/arsitektur.png" title="Model architecture">
 
-## Prasyarat
-- Python 3.9 – 3.11  
-- Kamera (untuk modul Vision)  
-- GPU opsional (untuk ASR)
+Hasil Uji dengan OpenLSR
+<div> </div>
+<img src="/assets/outputasr.png" title="Output ASR">
+<div> </div>
+
+Pipeline inference *speaker-aware* untuk audio (atau audio hasil ekstraksi video) dengan output:
+*transkrip + speaker + timestamp + confidence* (opsional: word-level).
+Didesain modular (OOP) sehingga bisa dipakai sebagai *library (web API)* atau *CLI*.
+
+Instalasi Cepat (ASR)
+bash
+Salin kode
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+source .venv/bin/activate
+
+pip install --upgrade pip
+pip install torch                   # pilih wheel CUDA sesuai driver jika ada GPU
+pip install pyannote.audio faster-whisper soundfile fastapi uvicorn
+
+# opsional: ffmpeg untuk ekstraksi/resampling audio dari video
+Cara Pakai Tingkat Tinggi
+Ekstrak audio dari video (opsional, via ffmpeg).
+
+Jalankan VAD untuk mendeteksi bagian bersuara.
+
+Jalankan diarization untuk memisahkan pembicara.
+
+Transkripsi setiap segmen dengan Faster-Whisper.
+
+Gabungkan hasil: text, speaker, start, end, confidence (opsional: word-level).
+
+Integrasi Vision + ASR (Opsional)
+Jalankan keduanya secara paralel atau berurutan.
+
+Samakan referensi waktu. Gunakan segmen vision (EYES_OFF/EYES_MOVING) sebagai konteks ketika menganalisis reliabilitas transkrip atau menandai event kecurangan multimodal.
+
+Catatan Konfigurasi Singkat
+Atur sensitivitas mata: turunkan GAZE_SPEED_THR atau GAZE_DELTA_X/Y bila perlu.
+
+Kurangi salah deteksi karena gelengan: naikkan HEAD_STATIC_VEL_THR atau longgarkan FACING_YAW_DEG/PITCH_DEG.
+
+Stabilkan sinyal: kecilkan EMA_ALPHA untuk pergerakan yang lebih halus.
+
+Prasyarat Umum
+Python 3.9–3.11
+
+Kamera terpasang untuk vision
+
+GPU opsional untuk percepatan torch dan Faster-Whisper
