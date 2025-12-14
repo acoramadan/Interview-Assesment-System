@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Assessment System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-gradient"></div>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-logo">AI</div>
+            <div class="brand-text">
+                <span class="brand-title">AI-Powered Interview Assessment System</span>
+            </div>
+        </div>
+
+        <nav class="top-actions">
+            <div class="status-dot" id="serverStatus">
+                <span class="status-pulse"></span>
+                <span class="status-label">Checking server...</span>
+            </div>
+            <div class="user-progress">
+                <div class="progress-label">Level 1 · New Challenger</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="xpBar" style="width: 0%;"></div>
+                </div>
+            </div>
+            <button class="top-btn" id="aboutBtn">About</button>
+        </nav>
+    </header>
+
+    <div class="about-overlay" id="aboutOverlay">
+        <div class="about-modal">
+            <button class="about-close" id="aboutClose">&times;</button>
+
+            <h2>Meet Our Team</h2>
+            <p class="about-content">
+                <b>ID Tim Capstone Project</b> : A25-CS346
+                <br>
+                <b>Judul proyek</b> : AI-Powered Interview Assessment System.
+                <br>
+                <b>Advisor Capstone</b> : A25-AD231 - Muhammad Ravi Shulthan Habibi
+                <br>
+                <b>List Anggota</b> :
+            </p>
+
+            <div class="about-team">
+                <div class="about-card">
+                    <div class="about-avatar">
+                        <img src="assets/Mufli.JPG" alt="Foto Pembuat 1">
+                    </div>
+                    <div class="about-info">
+                        <div class="about-name">Ahmad mufli ramadhan</div>
+                        <div class="about-id">ID: M272D5Y0100</div>
+                        <div class="about-path">Learning Path: Machine Learning</div>
+                    </div>
+                    <div class="about-links">
+                        <a href="https://github.com/acoramadan" target="_blank" class="social-link" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" class="social-icon" aria-hidden="true">
+                                <path
+                                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.69-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.75-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.41-5.25 5.69.42.36.8 1.09.8 2.2 0 1.59-.02 2.87-.02 3.26 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ahmad-mufli-ramadhan-7a9767282/" target="_blank"
+                            class="social-link" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" class="social-icon" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.32 8.01H4.7V23H.32V8.01zM8.58 8.01h4.18v2.04h.06c.58-1.1 2.01-2.27 4.14-2.27 4.43 0 5.25 2.92 5.25 6.72V23h-4.38v-7.02c0-1.68-.03-3.83-2.34-3.83-2.34 0-2.7 1.82-2.7 3.7V23H8.58V8.01z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-avatar">
+                        <img src="assets/muhammad.jpeg" alt="Foto Pembuat 2">
+                    </div>
+                    <div class="about-info">
+                        <div class="about-name">Muhammad</div>
+                        <div class="about-id">ID: M128D5Y1192</div>
+                        <div class="about-path">Learning Path: Machine Learning</div>
+                    </div>
+                    <div class="about-links">
+                        <a href="https://github.com/MedG12" target="_blank" class="social-link" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" class="social-icon" aria-hidden="true">
+                                <path
+                                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.69-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.75-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.41-5.25 5.69.42.36.8 1.09.8 2.2 0 1.59-.02 2.87-.02 3.26 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mhmmmd/" target="_blank" class="social-link"
+                            aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" class="social-icon" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.32 8.01H4.7V23H.32V8.01zM8.58 8.01h4.18v2.04h.06c.58-1.1 2.01-2.27 4.14-2.27 4.43 0 5.25 2.92 5.25 6.72V23h-4.38v-7.02c0-1.68-.03-3.83-2.34-3.83-2.34 0-2.7 1.82-2.7 3.7V23H8.58V8.01z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-avatar">
+                        <img src="assets/arya.jpeg" alt="Foto Pembuat 3">
+                    </div>
+                    <div class="about-info">
+                        <div class="about-name">Muhammad Arya Maulana</div>
+                        <div class="about-id">ID: M128D5Y1222</div>
+                        <div class="about-path">Learning Path: Machine Learning</div>
+                    </div>
+                    <div class="about-links">
+                        <a href="https://github.com/NazeeraAlthea" target="_blank" class="social-link"
+                            aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" class="social-icon" aria-hidden="true">
+                                <path
+                                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.69-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.75-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.41-5.25 5.69.42.36.8 1.09.8 2.2 0 1.59-.02 2.87-.02 3.26 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/muhammad-arya-maulana/" target="_blank" class="social-link"
+                            aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" class="social-icon" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.32 8.01H4.7V23H.32V8.01zM8.58 8.01h4.18v2.04h.06c.58-1.1 2.01-2.27 4.14-2.27 4.43 0 5.25 2.92 5.25 6.72V23h-4.38v-7.02c0-1.68-.03-3.83-2.34-3.83-2.34 0-2.7 1.82-2.7 3.7V23H8.58V8.01z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="panel glass-panel">
+            <div class="panel-header-row">
+                <h2>Upload Video</h2>
+                <span class="panel-badge panel-badge-blue">Step 1</span>
+            </div>
+
+            <div class="panel-hint">
+                Drag & drop atau klik area di bawah, lalu lihat XP bar bergerak saat proses sukses.
+            </div>
+
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">🎥</div>
+                <p class="upload-title">Klik atau drag &amp; drop</p>
+                <p class="upload-subtitle">MP4 · AVI · MOV · MKV</p>
+                <div class="upload-helper">
+                    <span class="badge-soft">Max ~500MB</span>
+                    <span class="badge-soft">1 file per upload</span>
+                </div>
+            </div>
+
+            <input type="file" id="fileInput" accept="video/*">
+
+            <div class="file-info" id="fileInfo">
+                <strong>File dipilih:</strong>
+                <p id="fileName"></p>
+                <p id="fileSize"></p>
+            </div>
+
+            <video class="video-preview" id="videoPreview" controls></video>
+            <div class="language-toggle">
+                <span class="language-label">Bahasa analisis:</span>
+                <div class="language-buttons">
+                    <button type="button" class="lang-btn lang-active" data-lang="en">
+                        <span class="lang-flag">🇺🇸</span>
+                        <span class="lang-code">EN</span>
+                    </button>
+                    <button type="button" class="lang-btn" data-lang="id">
+                        <span class="lang-flag">🇮🇩</span>
+                        <span class="lang-code">ID</span>
+                    </button>
+                </div>
+            </div>
+
+
+            <button class="btn primary-btn" id="uploadBtn" disabled>
+                <span class="btn-label">Upload &amp; Process</span>
+                <span class="btn-pulse"></span>
+            </button>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Processing video...</p>
+                <p class="loading-subtext">XP akan bertambah setelah analisis selesai.</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+
+        <div class="panel glass-panel result-panel">
+            <div class="panel-header-row">
+                <h2>Hasil Analisis</h2>
+                <span class="panel-badge panel-badge-purple">Step 2</span>
+            </div>
+
+            <div class="result-content" id="resultContent">
+                <div class="placeholder">
+                    <div class="placeholder-title">Belum ada analisis</div>
+                    <div class="placeholder-text">
+                        Upload video Anda untuk membuka transkrip, ringkasan, dan deteksi cheating.
+                        Setiap video berhasil menambah XP dan badge.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel glass-panel assessment-panel">
+            <div class="panel-header-row">
+                <h2>AI Assessment</h2>
+                <span class="panel-badge panel-badge-green">Step 3</span>
+            </div>
+
+            <p class="panel-description">
+                Pilih nomor pertanyaan lalu tekan "Assess Answer" untuk mendapatkan skor dan alasan.
+            </p>
+
+            <div class="question-buttons">
+                <button class="question-btn active" data-qid="q1">Q1</button>
+                <button class="question-btn" data-qid="q2">Q2</button>
+                <button class="question-btn" data-qid="q3">Q3</button>
+                <button class="question-btn" data-qid="q4">Q4</button>
+                <button class="question-btn" data-qid="q5">Q5</button>
+            </div>
+
+            <button class="btn assess-btn" id="assessBtn" disabled>
+                <span class="btn-label">Assess Answer</span>
+                <span class="btn-pulse btn-pulse-green"></span>
+            </button>
+
+            <div class="loading" id="assessLoading">
+                <div class="spinner spinner-green"></div>
+                <p>Menilai jawaban...</p>
+                <p class="loading-subtext">Dapatkan skor dan badge berdasarkan kualitas jawaban.</p>
+            </div>
+            <div id="assessmentResult"></div>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+        <div class="app-footer-inner">
+            <span class="footer-title">AI-Powered Interview Assessment System</span>
+            <span class="footer-divider">•</span>
+            <span class="footer-text">Built with NLP &amp; Computer Vision</span>
+        </div>
+        <div class="app-footer-links">
+            <span class="footer-text-sm">© 2025 Team A25-CS346</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
