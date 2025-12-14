@@ -11,17 +11,12 @@ class Diarization:
         # Convert audio ke tensor
         wav_tensor = torch.from_numpy(audio.astype(np.float32)).unsqueeze(0)
 
-        # Jalankan model diarization
         with torch.no_grad():
             diar_output = self.model({
                 "waveform": wav_tensor,
                 "sample_rate": self.sr
             })
 
-        # ======== PERBAIKAN PENTING =========
-        # pyannote 3.1 → wrapper object
-        # Annotation ada di: diar_output.speaker_diarization
-        # ====================================
         if not hasattr(diar_output, "speaker_diarization"):
             raise RuntimeError(
                 f"Diarization output tidak memiliki 'speaker_diarization'. "
