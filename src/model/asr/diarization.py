@@ -1,29 +1,43 @@
 import numpy as np
 import torch
 from typing import List, Dict
-from .utils import _as_float32_contiguous
 
 class Diarization:
     def __init__(self, pyannote_model, sampling_rate: int = 16000):
         self.model = pyannote_model
         self.sr = sampling_rate
     
-    def run(self, vad_segments: List[Dict], audio: np.ndarray) -> List[Dict]:
+    def run(self, audio: np.ndarray) -> List[Dict]:
+        # Convert audio ke tensor
+        wav_tensor = torch.from_numpy(audio.astype(np.float32)).unsqueeze(0)
+
+        # Jalankan model diarization
+        with torch.no_grad():
+            diar_output = self.model({
+                "waveform": wav_tensor,
+                "sample_rate": self.sr
+            })
+
+        # ======== PERBAIKAN PENTING =========
+        # pyannote 3.1 → wrapper object
+        # Annotation ada di: diar_output.speaker_diarization
+        # ====================================
+        if not hasattr(diar_output, "speaker_diarization"):
+            raise RuntimeError(
+                f"Diarization output tidak memiliki 'speaker_diarization'. "
+                f"Tipe: {type(diar_output)}"
+            )
+
+        annotation = diar_output.speaker_diarization
+
         all_diar = []
-        for seg in vad_segments:
-            st, en = seg['start'], seg['end']
-            s_samp, e_samp = int(st * self.sr), int(en * self.sr)
-            chunk = _as_float32_contiguous(audio[s_samp:e_samp])
-            wav_tensor = torch.from_numpy(chunk).unsqueeze(0)
 
-            with torch.no_grad():
-                out = self.model({'waveform': wav_tensor, 'sample_rate': self.sr})
+        # Iterasi segment diarization
+        for segment, _, speaker in annotation.itertracks(yield_label=True):
+            all_diar.append({
+                "start": float(segment.start),
+                "end": float(segment.end),
+                "speaker": speaker
+            })
 
-                for turn, speaker in out.speaker_diarization:
-                    all_diar.append({
-                        'start': st + turn.start,
-                        'end': st + turn.end,
-                        'speaker': speaker
-                    })
-        
         return all_diar
