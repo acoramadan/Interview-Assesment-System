@@ -163,7 +163,7 @@ ASR berada dalam satu blok besar dan terhubung langsung dengan:
 
 ### 3.Hasil Uji dengan OpenLSR
 <div> </div>
-<img src="/assets/outputasr.png" title="Output ASR">
+<img src="assets/outputasr.png" title="Output ASR">
 <div> </div>
 
 
