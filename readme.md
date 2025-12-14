@@ -7,8 +7,12 @@ Sistem ini merupakan **working prototype (MVP)** untuk membantu proses evaluasi 
 ---
 
 ## Demo Output
-Lihat folder `assets/` untuk contoh GIF hasil pengujian sistem.
-
+<div style="display:flex; gap:10px; justify-content:center; align-items:center; overflow-x:auto; padding:8px 0;">
+  <img src="/assets/1.gif" alt="Demo 1" height="140">
+  <img src="/assets/2.gif" alt="Demo 2" height="140">
+  <img src="/assets/3.gif" alt="Demo 3" height="140">
+  <img src="/assets/5.gif" alt="Demo 4" height="140">
+</div>
 ---
 
 ## 1. Cheating Detection – Computer Vision (MediaPipe)
