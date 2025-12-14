@@ -54,7 +54,7 @@ SR = 16000
 HG_TOKEN = os.getenv("HG_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 WHISPER_MODEL_SIZE = 'large-v3'
-PYANNOTE_VERSION = 'pyannote/speaker-diarization-3.1'
+PYANNOTE_VERSION = 'pyannote/speaker-diarization-community-1'
 
 for folder in [UPLOAD_FOLDER, AUDIO_FOLDER, ASR_RESULT_FOLDER, CHEAT_RESULT_FOLDER, REASONING_RESULT_FOLDER]:
     Path(folder).mkdir(parents=True, exist_ok=True)
