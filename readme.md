@@ -69,7 +69,7 @@ Tekan Esc untuk keluar. Hasil segmen tersimpan di cheat_outputs/.
 #### 2. ASR Pipeline – VAD → Diarization → Faster-Whisper
 
 Arsitektur Model
-<img src="/assets/image.png" title="Model architecture">
+<img src="/assets/arsitektur.png" title="Model architecture">
 
 Hasil Uji dengan OpenLSR
 <div> </div>
