@@ -1,5 +1,5 @@
 # Cheating Detection (MediaPipe) + ASR Pipeline (VAD → Diarization → Faster-Whisper)
-# Link Hugging face model ASR INDO :[hugging face](https://huggingface.co/Mufliramadhan/indo_speech) 
+
 ## Testing Output
 <div style="display:flex; gap:10px; justify-content:center; align-items:center; overflow-x:auto; padding:8px 0;">
   <img src="/assets/1.gif" alt="Demo 1" height="140">
@@ -9,6 +9,8 @@
 </div>
 
 ---
+# Arsitektur Model
+<img src="/assets/arsitektur.png" title="Model architecture">
 
 ## 1. Cheating Detection with MediaPipe (Head-tolerant, Eye-priority)
 
@@ -30,30 +32,27 @@ Deteksi indikasi tidak fokus atau kecurangan dari kamera dengan menekankan perge
 8. Tulis segmen ke CSV/JSON saat alasan berubah.
 
 ### Komponen Utama
-- `PeopleDetector`: mendeteksi jumlah orang per frame menggunakan YOLOv8 Pose, dilengkapi filter confidence, luas bbox, validasi skeleton, dan smoothing temporal.
-- `EyeGazeEstimator`: estimasi arah pandangan mata berbasis MediaPipe FaceMesh + iris landmarks, menghasilkan vektor gaze (gx, gy) dan label CENTER/LEFT/RIGHT/UP/DOWN/BLINK.
-- `HeadPoseEstimator`: estimasi pose kepala (yaw, pitch, roll) menggunakan solvePnP, dengan smoothing dan koreksi baseline otomatis.
-- `HybridCalibration`: estimasi baseline yaw dan pitch dari frame awal secara otomatis (tanpa interaksi pengguna) untuk koreksi bias posisi kamera.
-- `SegmentLogger`: log segmen ke `cheat_outputs/<prefix>_segments.csv` dan `.json`.
+- PeopleDetector: mendeteksi jumlah orang per frame menggunakan YOLOv8 Pose, dilengkapi filter confidence, luas bbox, validasi skeleton, dan smoothing temporal.
+- EyeGazeEstimator: estimasi arah pandangan mata berbasis MediaPipe FaceMesh + iris landmarks, menghasilkan vektor gaze (gx, gy) dan label CENTER/LEFT/RIGHT/UP/DOWN/BLINK.
+- HeadPoseEstimator: estimasi pose kepala (yaw, pitch, roll) menggunakan solvePnP, dengan smoothing dan koreksi baseline otomatis.
+- HybridCalibration: estimasi baseline yaw dan pitch dari frame awal secara otomatis (tanpa interaksi pengguna) untuk koreksi bias posisi kamera.
+- SegmentLogger: log segmen ke cheat_outputs/<prefix>_segments.csv dan .json.
 
 ### Parameter Kunci (disetel agar pro-eye, toleran kepala)
-- `FACING_YAW_THRESHOLD=25`, `HEAD_PITCH_THRESHOLD=20`
-- `EYE_CHEAT_MIN_DURATION = 1.0s`, `HEAD_CHEAT_MIN_DURATION = 1.0s`
-- `PEOPLE_MIN_DURATION = 0.3s`
-- `BLINK_EAR = 0.20`
-- `GAZE_LEFT/RIGHT/UP/DOWN_TH ≈ ±0.12`
-- `Head smoothing ALPHA = 0.7`
-- `Person count smoothing strength = 0.6`
-- `CALIBRATION_LIMIT = 40 frames (~1 detik)`
+- FACING_YAW_THRESHOLD=25, HEAD_PITCH_THRESHOLD=20
+- EYE_CHEAT_MIN_DURATION = 1.0s, HEAD_CHEAT_MIN_DURATION = 1.0s
+- PEOPLE_MIN_DURATION = 0.3s
+- BLINK_EAR = 0.20
+- GAZE_LEFT/RIGHT/UP/DOWN_TH ≈ ±0.12
+- Head smoothing ALPHA = 0.7
+- Person count smoothing strength = 0.6
+- CALIBRATION_LIMIT = 40 frames (~1 detik)
 
 ### Output
 - Overlay kamera: bbox, status, yaw/pitch, head_vel, gaze, kecepatan gaze, dan CHEATING:REASON saat aktif.
-- CSV kolom: `track_id, reason, start_ts, end_ts, duration_sec, start_hhmmss, end_hhmmss`
+- CSV kolom: track_id, reason, start_ts, end_ts, duration_sec, start_hhmmss, end_hhmmss
 - JSON: metadata sesi dan daftar segmen.
 
-### Instalasi Cepat (Vision)
-```bash
-python -m venv .venv
 # Windows: .venv\Scripts\activate
 source .venv/bin/activate
 
@@ -64,26 +63,110 @@ bash
 Salin kode
 python main.py
 Tekan Esc untuk keluar. Hasil segmen tersimpan di cheat_outputs/.
+
+
+
+# 2. Automatic Speech Recognition (ASR) Pipeline  
+*(Interview Assessment System – ASR Version)*
+
+## Tujuan Singkat
+Melakukan transkripsi wawancara secara **tersegmentasi per pembicara** dari video interview, sehingga jawaban kandidat dapat dianalisis dan dinilai secara otomatis berdasarkan **rubric pertanyaan**.
+
+Pipeline ini berfokus pada **akurasi transkrip + pemisahan pembicara (speaker diarization)** dan menghasilkan output terstruktur (JSON) yang siap dikonsumsi oleh modul penilaian (LLM / Gemini API).
+
+---
+
+## Arsitektur (Sesuai Diagram)
+**Video Dataset → Audio Extraction → ASR & Diarization → Transcript Segments JSON → Assessment → Final Report**
+
+ASR berada dalam satu blok besar dan terhubung langsung dengan:
+- **Video Dataset** (input)
+- **Question Rubric (YAML)** (konteks penilaian)
+- **Gemini API** (penilaian jawaban)
+- **Final Report** (output akhir)
+
+---
+
+## Cara Kerja Singkat
+1. **Input Video**
+   - Video interview diambil dari *Video Dataset*.
+
+2. **Extract Audio**
+   - Audio diekstrak dari video:
+     - Sample rate: **16 kHz**
+     - Channel: **mono**
+   - Output: `file.wav`
+
+3. **Speaker Diarization + VAD (Pyannote)**
+   - `pyannote.audio` digunakan untuk:
+     - Voice Activity Detection (VAD)
+     - Speaker diarization
+   - Output berupa segmen waktu dengan label speaker:
+     ```
+     [start_time, end_time, speaker_id]
+     ```
+
+4. **Automatic Speech Recognition (Whisper Large)**
+   - Model: **Whisper Large**
+   - Input: audio + segmen diarization
+   - Output:
+     - Transkrip teks
+     - Timestamp per segmen
+     - Speaker-aware transcription
+
+5. **Transcript Segments JSON**
+   - Semua hasil ASR disatukan dalam format JSON terstruktur
+   - Menjadi sumber utama untuk penilaian jawaban
+
+6. **Assessment dengan Gemini API**
+   - Transcript + Question Rubric (YAML) dikirim ke Gemini API
+   - Sistem menilai:
+     - Relevansi jawaban
+     - Kelengkapan
+     - Kejelasan
+     - Konsistensi antar segmen
+
+7. **Final Report**
+   - Menggabungkan:
+     - Skor jawaban (ASR)
+     - Hasil cheating detection (Computer Vision)
+   - Output akhir dalam bentuk laporan evaluasi interview
+
+---
+
+## Komponen Utama
+
+### 1. AudioExtractor
+- Mengambil audio dari video
+- Normalisasi:
+  - 16kHz
+  - mono
+- Output: `file.wav`
+
+---
+
+### 2. DiarizationEngine
+- Library: `pyannote.audio`
+- Fungsi:
+  - Voice Activity Detection
+  - Speaker diarization
+- Output:
+```json
+[
+  {
+    "speaker": "SPEAKER_00",
+    "start": 3.21,
+    "end": 8.95
+  }
+]
 ```
 
-#### 2. ASR Pipeline – VAD → Diarization → Faster-Whisper
-
-Arsitektur Model
-<img src="/assets/image.png" title="Model architecture">
-
-Hasil Uji dengan OpenLSR
+### 3.Hasil Uji dengan OpenLSR
 <div> </div>
-<img src="/assets/outputasr.png" title="Output ASR">
+<img src="assets/outputasr.png" title="Output ASR">
 <div> </div>
 
-Pipeline inference **speaker-aware** untuk audio (atau audio hasil ekstraksi video) dengan output:
-**transkrip + speaker + timestamp + confidence** (opsional: word-level).
-Didesain modular (OOP) sehingga bisa dipakai sebagai **library (web API)** atau **CLI**.
 
-Instalasi Cepat (ASR)
-bash
-Salin kode
-python -m venv .venv
 # Windows: .venv\Scripts\activate
 source .venv/bin/activate
 
@@ -120,4 +203,4 @@ Python 3.9–3.11
 
 Kamera terpasang untuk vision
 
-GPU opsional untuk percepatan torch dan Faster-Whisper
+GPU opsional untuk percepatan torch dan Faster-Whisper
